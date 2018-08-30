@@ -6,7 +6,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
-
+const crypto = require("crypto");
 var CONTACTS_COLLECTION = "contacts";
 var USERS_COLLECTION = "users";
 var app = express();
@@ -37,6 +37,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
 // USERS API ROUTES
   app.post("/api/users", function(req, res) {
   var newUser = req.body;
+  newUser.password = crypto.createHash('sha256').update(JSON.stringify(req.body.password)).digest('hex');
   newUser.createDate = new Date();
 
   if (!req.body.name) {
