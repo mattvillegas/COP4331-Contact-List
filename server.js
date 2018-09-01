@@ -33,15 +33,24 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
   });
 });
 
+// Generic error handler used by all endpoints.
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
+
 
 // USERS API ROUTES
-  app.post("/api/users", function(req, res) {
+  app.post("/api/users/createuser", function(req, res) {
   var newUser = req.body;
   newUser.password = crypto.createHash('sha256').update(JSON.stringify(req.body.password)).digest('hex');
   newUser.createDate = new Date();
+  newUser.fname = req.body.fname;
+  newUser.lname = req.body.lname;
+  newUser.email = req.body.email;
 
-  if (!req.body.name) {
-    handleError(res, "Invalid user input", "Must provide a name.", 400);
+  if (!req.body.fname || !req.body.lname || !req.body.email || !req.body.password) {
+    handleError(res, "Invalid user input", "Missing Creation Parameter", 400);
   } else {
     db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
       if (err) {
@@ -53,6 +62,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:2701
   }
 });
 
+// Note this should not be publicly available, for debugging purposes only
 app.get("/api/users", function(req, res) {
   db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
@@ -67,19 +77,17 @@ app.get("/api/users", function(req, res) {
 
 // CONTACTS API ROUTES BELOW
 
-// Generic error handler used by all endpoints.
-function handleError(res, reason, message, code) {
-  console.log("ERROR: " + reason);
-  res.status(code || 500).json({"error": message});
-}
 
-/*  "/api/contacts"
- *    GET: finds all contacts
- *    POST: creates a new contact
+
+/*  "/api/contacts/:id"
+ *    GET: finds all contacts associated with the user's id :id
+ *    POST: creates a new contact and associates it with the user id
+ *    DELETE: deletes a contact associated with the user's id
+ *    PUT: Updates a contact associated with the user's id
  */
 
-app.get("/api/contacts", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+app.get("/api/contacts/:id", function(req, res) {
+  db.collection(CONTACTS_COLLECTION).find({"userid" : req.params.id}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get contacts.");
     } else {
@@ -88,12 +96,16 @@ app.get("/api/contacts", function(req, res) {
   });
 });
 
-app.post("/api/contacts", function(req, res) {
+app.post("/api/contacts/:id", function(req, res) {
   var newContact = req.body;
   newContact.createDate = new Date();
+  newContact.userid = req.params.id;
+  newContact.phone = req.body.phone;
+  newContact.address = req.body.address;
+  newContact.email = req.body.email; 
 
   if (!req.body.name) {
-    handleError(res, "Invalid user input", "Must provide a name.", 400);
+    handleError(res, "Invalid user input", "Missing Creation Parameter", 400);
   } else {
     db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
       if (err) {
@@ -105,11 +117,17 @@ app.post("/api/contacts", function(req, res) {
   }
 });
 
+/* "/api/contacts/"
+      GET: Print all contacts in database
+
+      This is for debugging purposes only
+*/
+
 /*  "/api/contacts/:id"
  *    GET: find contact by id
  *    PUT: update contact by id
  *    DELETE: deletes contact by id
- */
+ 
 
 app.get("/api/contacts/:id", function(req, res) {
   db.collection(CONTACTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
@@ -120,6 +138,8 @@ app.get("/api/contacts/:id", function(req, res) {
     }
   });
 });
+
+
 
 app.put("/api/contacts/:id", function(req, res) {
   var updateDoc = req.body;
@@ -135,6 +155,7 @@ app.put("/api/contacts/:id", function(req, res) {
   });
 });
 
+
 app.delete("/api/contacts/:id", function(req, res) {
   db.collection(CONTACTS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
     if (err) {
@@ -144,3 +165,4 @@ app.delete("/api/contacts/:id", function(req, res) {
     }
   });
 });
+*/
