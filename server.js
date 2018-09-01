@@ -4,8 +4,8 @@
 
 var express = require("express");
 var bodyParser = require("body-parser");
-var mongodb = require("mongodb");
-var ObjectID = mongodb.ObjectID;
+var mongoose = require('mongoose');
+//var ObjectID = mongodb.ObjectID;
 const crypto = require("crypto");
 var CONTACTS_COLLECTION = "contacts";
 var USERS_COLLECTION = "users";
@@ -13,25 +13,55 @@ var app = express();
 app.use(bodyParser.json());
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
-var db;
+//var db;
 
 // Connect to the database before starting the application server.
-mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
+mongoose.connect("mongodb://localhost/test");
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function(){
+	// should be connected
+	console.log('connected');
+});
+
+/*mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
   if (err) {
     console.log(err);
     process.exit(1);
   }
-
+*/
   // Save database object from the callback for reuse.
-  db = client.db();
-  console.log("Database connection ready");
+  //db = client.db();
+  //console.log("Database connection ready");
 
   // Initialize the app.
   var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
+  var port = server.address().port;
     console.log("App now running on port", port);
   });
+//});
+
+var contactSchema = new mongoose.Schema({
+	createDate: Date,
+	name: String,
+	phone: String,
+	email: String,
+	address: String,
+	userID: String,
+	//_id: String
 });
+
+var userSchema = new mongoose.Schema({
+	createDate: Date,
+	fname: String,
+	lname: String,
+	email: String,
+	password: String
+	//_id: String
+});
+
+var Contact = mongoose.model("Contact", contactSchema);
+var User = mongoose.model("User", userSchema);
 
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
@@ -42,22 +72,36 @@ function handleError(res, reason, message, code) {
 
 // USERS API ROUTES
   app.post("/api/users/createuser", function(req, res) {
-  var newUser = req.body;
-  newUser.password = crypto.createHash('sha256').update(JSON.stringify(req.body.password)).digest('hex');
-  newUser.createDate = new Date();
-  newUser.fname = req.body.fname;
-  newUser.lname = req.body.lname;
-  newUser.email = req.body.email;
+  //var newUser = req.body;
+  //newUser.password = crypto.createHash('sha256').update(JSON.stringify(req.body.password)).digest('hex');
+  //newUser.createDate = new Date();
+  //newUser.fname = req.body.fname;
+  //newUser.lname = req.body.lname;
+  //newUser.email = req.body.email;
+  
+  var user = new User({
+	  createDate: new Date(),
+	  fname: req.body.fname,
+	  lname: req.body.lname,
+	  email: req.body.email,
+	  password: crypto.createHash('sha256').update(JSON.stringify(req.body.password)).digest('hex')
+	  });
 
   if (!req.body.fname || !req.body.lname || !req.body.email || !req.body.password) {
     handleError(res, "Invalid user input", "Missing Creation Parameter", 400);
   } else {
-    db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
-      if (err) {
-        handleError(res, err.message, "Failed to create new user.");
-      } else {
-        res.status(201).json(doc.ops[0]);
-      }
+    //db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
+      //if (err) {
+        //handleError(res, err.message, "Failed to create new user.");
+      //} else {
+        //res.status(201).json(doc.ops[0]);
+      
+	  user.save(function(err, user) {
+		if(err) return console.log("Didnt save");
+		else {
+		  console.log("I dont know")
+		  res.status(201).json(user);
+		}
     });
   }
 });
@@ -97,22 +141,31 @@ app.get("/api/contacts/:id", function(req, res) {
 });
 
 app.post("/api/contacts/:id", function(req, res) {
-  var newContact = req.body;
-  newContact.createDate = new Date();
-  newContact.userid = req.params.id;
-  newContact.phone = req.body.phone;
-  newContact.address = req.body.address;
-  newContact.email = req.body.email; 
+  //var newContact = req.body;
+  //newContact.createDate = new Date();
+  //newContact.userid = req.params.id;
+  //newContact.phone = req.body.phone;
+  //newContact.address = req.body.address;
+  //newContact.email = req.body.email; 
+  
+  var contact = new Contact({
+	  createDate: new Date(),
+	  name: req.body.name,
+	  phone: req.body.phone,
+	  email: req.body.email,
+	  address: req.body.address,
+	  userID: req.params.id
+	  });
 
   if (!req.body.name) {
     handleError(res, "Invalid user input", "Missing Creation Parameter", 400);
   } else {
-    db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
-      if (err) {
-        handleError(res, err.message, "Failed to create new contact.");
-      } else {
-        res.status(201).json(doc.ops[0]);
-      }
+    contact.save(function(err, contact) {
+		if(err) return console.log("Didnt save");
+		else {
+		  console.log("I dont know")
+		  res.status(201).json(contact);
+		}
     });
   }
 });
