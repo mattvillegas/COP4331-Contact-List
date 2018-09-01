@@ -108,7 +108,7 @@ function handleError(res, reason, message, code) {
 
 // Note this should not be publicly available, for debugging purposes only
 app.get("/api/users", function(req, res) {
-  //db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
+  
     
   User.find(function(err, users) {
 	if (err) {
