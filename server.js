@@ -108,14 +108,19 @@ function handleError(res, reason, message, code) {
 
 // Note this should not be publicly available, for debugging purposes only
 app.get("/api/users", function(req, res) {
-  db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
-    if (err) {
-      handleError(res, err.message, "Failed to get users.");
-    } else {
-      res.status(200).json(docs);
-    }
+  //db.collection(USERS_COLLECTION).find({}).toArray(function(err, docs) {
+    
+  User.find(function(err, users) {
+	if (err) {
+	  handleError(res, err.message, "Couldnt get users");
+	}
+	else {
+	  res.status(201).json(users);
+	}
+  })
+	
   });
-});
+//});
 
 
 
