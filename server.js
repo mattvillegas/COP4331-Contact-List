@@ -47,7 +47,7 @@ var contactSchema = new mongoose.Schema({
 	phone: String,
 	email: String,
 	address: String,
-	userID: String,
+	CreatedByUserID: String,
 	//_id: String
 });
 
@@ -136,13 +136,23 @@ app.get("/api/users", function(req, res) {
  */
 
 app.get("/api/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).find({"userid" : req.params.id}).toArray(function(err, docs) {
-    if (err) {
-      handleError(res, err.message, "Failed to get contacts.");
-    } else {
-      res.status(200).json(docs);
-    }
-  });
+  //db.collection(CONTACTS_COLLECTION).find({"userid" : req.params.id}).toArray(function(err, docs) {
+    //if (err) {
+      //handleError(res, err.message, "Failed to get contacts.");
+    //} else {
+      //res.status(200).json(docs);
+    //}
+  //});
+  
+Contact.find({CreatedFromUserID: req.params.id}, function(err, contactsFromUser) {
+	if (err) {
+	  handleError(res, err.message, "Couldnt get contacts for this user");
+	}
+	else {
+	  res.status(201).json(contactsFromUser);
+	}
+  })
+  
 });
 
 app.post("/api/contacts/:id", function(req, res) {
@@ -159,7 +169,7 @@ app.post("/api/contacts/:id", function(req, res) {
 	  phone: req.body.phone,
 	  email: req.body.email,
 	  address: req.body.address,
-	  userID: req.params.id
+	  CreatedByUserID: req.params.id
 	  });
 
   if (!req.body.name) {
