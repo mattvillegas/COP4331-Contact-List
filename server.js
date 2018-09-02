@@ -96,12 +96,14 @@ function handleError(res, reason, message, code) {
       //} else {
         //res.status(201).json(doc.ops[0]);
       
-	  user.save(function(err, user) {
-		if(err) return console.log("Didnt save");
-		else {
-		  console.log("I dont know")
-		  res.status(201).json(user);
-		}
+	    user.save(function(err, user) {
+       if(err) {
+        handleError(res, "Databse error", "Error saving user data");
+      }
+		   else {
+		    console.log("User succsfully created!")
+		    res.status(201).json(user);
+		  }
     });
   }
 });
@@ -111,15 +113,14 @@ app.get("/api/users", function(req, res) {
   
     
   User.find(function(err, users) {
-	if (err) {
-	  handleError(res, err.message, "Couldnt get users");
-	}
-	else {
-	  res.status(201).json(users);
-	}
+	  if (err) {
+	    handleError(res, err.message, "Couldnt get users");
+	  }
+	  else {
+	    res.status(201).json(users);
+    }
   })
-	
-  });
+});
 //});
 
 
@@ -144,15 +145,14 @@ app.get("/api/contacts/:id", function(req, res) {
     //}
   //});
   
-Contact.find({CreatedByUserID: req.params.id}, function(err, contactsFromUser) {
-	if (err) {
-	  handleError(res, err.message, "Couldnt get contacts for this user");
-	}
-	else {
-	  res.status(201).json(contactsFromUser);
-	}
-  })
-  
+  Contact.find({CreatedByUserID: req.params.id}, function(err, contactsFromUser) {
+	  if (err) {
+	    handleError(res, err.message, "Couldnt get contacts for this user");
+	  }
+	  else {
+	    res.status(201).json(contactsFromUser);
+	  }
+    }) 
 });
 
 app.post("/api/contacts/:id", function(req, res) {
