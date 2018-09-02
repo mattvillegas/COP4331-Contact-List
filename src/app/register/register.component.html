@@ -1,3 +1,49 @@
-<p>
-  register works!
-</p>
+<html>
+<body>
+
+    <div id="register">
+      <div style="padding-top: 50px">
+        <h1 class="text-center text-white display-1">Contact Manager</h1>
+        <h3 class="text-center text-white">A simple contact manager utilizing the MEAN stack</h3>
+      </div>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="" method="post">
+                            <h3 class="text-center text-info">Register</h3>
+                            <div class="form-group">
+                                <label for="firstname" class="text-info">First Name:</label><br>
+                                <input type="text" name="firstname" id="firstname" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname" class="text-info">Last Name:</label><br>
+                                <input type="text" name="lastname" id="lastname" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="text-info">Email:</label><br>
+                                <input type="text" name="email" id="email" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+                                <input type="text" name="password" id="password" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                              <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                            </div>
+
+                            <div id="register-link" class="text-left" style="margin: 1px">
+                                <a [routerLink] = "['/']" class="text-info">Already registered? Login here!</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>

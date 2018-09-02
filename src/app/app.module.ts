@@ -13,7 +13,7 @@ import { DashComponent } from './dash/dash.component';
 const appRoutes: Routes =[
   { path:'', component: HomeComponent },
   { path: 'register', component: RegisterComponent},
-  { path:'user/dash', component: DashComponent},
+  { path:'dash', component: DashComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
@@ -25,7 +25,9 @@ const appRoutes: Routes =[
     DashComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
+
   ],
   providers: [],
   bootstrap: [AppComponent]
