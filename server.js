@@ -8,9 +8,6 @@ var USERS_COLLECTION = "users";
 var app = express();
 app.use(bodyParser.json());
 
-// Create a database variable outside of the database connection callback to reuse the connection pool in your app.
-//var db;
-
 // Connect to the database before starting the application server.
 mongoose.connect("mongodb://localhost/test");
 var db = mongoose.connection;
@@ -20,22 +17,12 @@ db.once("open", function(){
 	console.log('connected');
 });
 
-/*mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
-  if (err) {
-    console.log(err);
-    process.exit(1);
-  }
-*/
-  // Save database object from the callback for reuse.
-  //db = client.db();
-  //console.log("Database connection ready");
-
   // Initialize the app.
   var server = app.listen(process.env.PORT || 8080, function () {
   var port = server.address().port;
     console.log("App now running on port", port);
   });
-//});
+
 
 var contactSchema = new mongoose.Schema({
 	createDate: Date,
@@ -68,12 +55,6 @@ function handleError(res, reason, message, code) {
 
 // USERS API ROUTES
   app.post("/api/users/createuser", function(req, res) {
-  //var newUser = req.body;
-  //newUser.password = crypto.createHash('sha256').update(JSON.stringify(req.body.password)).digest('hex');
-  //newUser.createDate = new Date();
-  //newUser.fname = req.body.fname;
-  //newUser.lname = req.body.lname;
-  //newUser.email = req.body.email;
   
   var user = new User({
 	  createDate: new Date(),
@@ -86,13 +67,7 @@ function handleError(res, reason, message, code) {
   if (!req.body.fname || !req.body.lname || !req.body.email || !req.body.password) {
     handleError(res, "Invalid user input", "Missing Creation Parameter", 400);
   } else {
-    //db.collection(USERS_COLLECTION).insertOne(newUser, function(err, doc) {
-      //if (err) {
-        //handleError(res, err.message, "Failed to create new user.");
-      //} else {
-        //res.status(201).json(doc.ops[0]);
-      
-	    user.save(function(err, user) {
+      user.save(function(err, user) {
        if(err) {
         handleError(res, "Databse error", "Error saving user data");
       }
@@ -117,13 +92,9 @@ app.get("/api/users", function(req, res) {
     }
   })
 });
-//});
-
 
 
 // CONTACTS API ROUTES BELOW
-
-
 
 /*  "/api/contacts/:id"
  *    GET: finds all contacts associated with the user's id :id
@@ -133,13 +104,6 @@ app.get("/api/users", function(req, res) {
  */
 
 app.get("/api/contacts/:id", function(req, res) {
-  //db.collection(CONTACTS_COLLECTION).find({"userid" : req.params.id}).toArray(function(err, docs) {
-    //if (err) {
-      //handleError(res, err.message, "Failed to get contacts.");
-    //} else {
-      //res.status(200).json(docs);
-    //}
-  //});
   
   Contact.find({CreatedByUserID: req.params.id}, function(err, contactsFromUser) {
 	  if (err) {
@@ -152,12 +116,6 @@ app.get("/api/contacts/:id", function(req, res) {
 });
 
 app.post("/api/contacts/create/:id", function(req, res) {
-  //var newContact = req.body;
-  //newContact.createDate = new Date();
-  //newContact.userid = req.params.id;
-  //newContact.phone = req.body.phone;
-  //newContact.address = req.body.address;
-  //newContact.email = req.body.email; 
   
   var contact = new Contact({
 	  createDate: new Date(),
@@ -226,47 +184,3 @@ app.get("/api/contacts",function(req, res) {
 
   })
 });
-
-/*  "/api/contacts/:id"
- *    GET: find contact by id
- *    PUT: update contact by id
- *    DELETE: deletes contact by id
- 
-
-app.get("/api/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to get contact");
-    } else {
-      res.status(200).json(doc);
-    }
-  });
-});
-
-
-
-app.put("/api/contacts/:id", function(req, res) {
-  var updateDoc = req.body;
-  delete updateDoc._id;
-
-  db.collection(CONTACTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, { $set: {name : updateDoc.name, email : updateDoc.email}}, {upsert : true}, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to update contact");
-    } else {
-      updateDoc._id = req.params.id;
-      res.status(200).json(updateDoc);
-    }
-  });
-});
-
-
-app.delete("/api/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
-    if (err) {
-      handleError(res, err.message, "Failed to delete contact");
-    } else {
-      res.status(200).json(req.params.id);
-    }
-  });
-});
-*/
