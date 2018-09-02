@@ -191,6 +191,19 @@ app.post("/api/contacts/:id", function(req, res) {
       This is for debugging purposes only
 */
 
+app.get("/api/contacts",function(req, res) {
+  Contact.find(function(err, allContacts) {
+    if(err) {
+      handleError(res, "Error fetching contacts", "Could not fetch contacts from Database");
+    }  
+    else {
+      console.log("Succesfully fetched all users!");
+      res.status(201).json(allContacts);
+    }
+
+  })
+});
+
 /*  "/api/contacts/:id"
  *    GET: find contact by id
  *    PUT: update contact by id
