@@ -144,7 +144,7 @@ app.get("/api/contacts/:id", function(req, res) {
     //}
   //});
   
-Contact.find({CreatedFromUserID: req.params.id}, function(err, contactsFromUser) {
+Contact.find({CreatedByUserID: req.params.id}, function(err, contactsFromUser) {
 	if (err) {
 	  handleError(res, err.message, "Couldnt get contacts for this user");
 	}
