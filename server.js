@@ -1,7 +1,3 @@
-// Testing if the auto deploy to github works..
-// Testing the auto deploy on a different account than matt's...
-// Testing pushing to database_development only...
-
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require('mongoose');
@@ -101,7 +97,7 @@ function handleError(res, reason, message, code) {
         handleError(res, "Databse error", "Error saving user data");
       }
 		   else {
-		    console.log("User succsfully created!")
+		    console.log("User successfully created!");
 		    res.status(201).json(user);
 		  }
     });
@@ -133,7 +129,7 @@ app.get("/api/users", function(req, res) {
  *    GET: finds all contacts associated with the user's id :id
  *    POST: creates a new contact and associates it with the user id
  *    DELETE: deletes a contact associated with the user's id
- *    PUT: Updates a contact associated with the user's id
+ *    
  */
 
 app.get("/api/contacts/:id", function(req, res) {
@@ -155,7 +151,7 @@ app.get("/api/contacts/:id", function(req, res) {
     }) 
 });
 
-app.post("/api/contacts/:id", function(req, res) {
+app.post("/api/contacts/create/:id", function(req, res) {
   //var newContact = req.body;
   //newContact.createDate = new Date();
   //newContact.userid = req.params.id;
@@ -178,11 +174,38 @@ app.post("/api/contacts/:id", function(req, res) {
     contact.save(function(err, contact) {
 		if(err) return console.log("Didnt save");
 		else {
-		  console.log("I dont know")
+		  console.log("Contact succesfully created")
 		  res.status(201).json(contact);
 		}
     });
   }
+});
+
+
+app.post("/api/contacts/search/:id", function(req, res){
+
+  // TODO: SANITIZE
+  var searchFor = req.body.searchFor;
+ 
+  Contact.find({
+    $and: [
+      {$or: [ {"name": searchFor}, {"email" : searchFor}, {"phone": searchFor}, {"address" : searchFor} ]},
+      {CreatedByUserID : req.params.id}  
+    ]   
+  }, function(err, foundContacts){ 
+    if(err) {
+      handleError(res, "Database error retrieving contact", "Contact not found!");
+
+    }
+    else {
+        if(!foundContacts.length) {
+          res.status(201).json("No contacts found");
+        }
+        else {
+          res.status(201).json(foundContacts)
+        }
+    }
+  })
 });
 
 /* "/api/contacts/"
