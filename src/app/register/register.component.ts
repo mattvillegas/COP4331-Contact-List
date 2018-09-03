@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
       data =>{
         // this.showSuccess('You are registered and now can log in.');
         alert('You are registered and now can log in');
-        this.router.navigate(['/dash']);
+        this.router.navigate(['/home']);
     }, error => {
         alert('Something went wrong, please try again');
        // this.showError();

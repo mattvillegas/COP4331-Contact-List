@@ -5735,7 +5735,7 @@ var RegisterComponent = /** @class */ (function () {
         this.authService.registerUser(user).subscribe(function (data) {
             // this.showSuccess('You are registered and now can log in.');
             alert('You are registered and now can log in');
-            _this.router.navigate(['/dash']);
+            _this.router.navigate(['/home']);
         }, function (error) {
             alert('Something went wrong, please try again');
             // this.showError();
@@ -5783,10 +5783,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
-        this.baseUri = "http://localhost:8080";
+        this.baseUri = "http://localhost:8080/";
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json');
     }
     AuthService.prototype.registerUser = function (user) {
+        console.log(user);
         return this.http.post(this.baseUri + 'api/users/createuser', user, { headers: this.headers });
     };
     AuthService = __decorate([

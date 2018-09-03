@@ -21,9 +21,9 @@ db.once("open", function(){
 });
 
 
-app.get('*', function(req,res){
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-});
+// app.get('*', function(req,res){
+//     res.sendFile(path.join(__dirname, 'public/index.html'));
+// });
   // Initialize the app.
   var server = app.listen(process.env.PORT || 8080, function () {
   var port = server.address().port;
@@ -93,7 +93,6 @@ app.post("/api/users/login", function(req, res) {
   } else {
       user.save(function(err, user) {
        if(err) {
-				console.log("Database Error");
         handleError(res, "Databse error", "Error saving user data");
       }
 		   else {
