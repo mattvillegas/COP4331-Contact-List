@@ -7,7 +7,9 @@ const crypto = require("crypto");
 var CONTACTS_COLLECTION = "contacts";
 var USERS_COLLECTION = "users";
 const path = require("path");
+const cors = require("cors");
 var app = express();
+app.use(cors)
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -79,7 +81,6 @@ app.post("/api/users/login", function(req, res) {
 
 // USERS API ROUTES
   app.post("/api/users/createuser", function(req, res) {
-
   var user = new User({
 	  createDate: new Date(),
 	  fname: req.body.fname,
