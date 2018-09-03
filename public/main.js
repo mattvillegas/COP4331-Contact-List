@@ -5616,7 +5616,7 @@ module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n<body>\n\n    <div id=\"login\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\n                <div id=\"login-column\" class=\"col-md-6\">\n                    <div id=\"login-box\" class=\"col-md-12\">\n                        <form id=\"login-form\" class=\"form\" action=\"\" method=\"post\">\n                            <h3 class=\"text-center text-info\">Login</h3>\n                            <div class=\"form-group\">\n                                <label for=\"email\" class=\"text-info\">Email:</label><br>\n                                <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" [(ngModel)]=\"email\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"text-info\">Password:</label><br>\n                                <input type=\"text\" name=\"password\" id=\"password\" class=\"form-control\" [(ngModel)]=\"password\" required>\n\n                            </div>\n                            <div class=\"form-group\">\n                              <a class=\"btn btn-info btn-md\" (click)=\"onSubmit()\">Submit</a>\n                            </div>\n\n                            <div id=\"register-link\" class=\"text-left\" style=\"margin: 1px\">\n                                <a [routerLink] = \"['/register']\" class=\"text-info\">Need an account? Register here!</a>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n\n\n</html>\n"
+module.exports = "<html>\n<body>\n\n    <div id=\"login\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\n                <div id=\"login-column\" class=\"col-md-6\">\n                    <div id=\"login-box\" class=\"col-md-12\">\n                        <form id=\"login-form\" class=\"form\" action=\"\" method=\"post\">\n                            <h3 class=\"text-center text-info\">Login</h3>\n                            <div class=\"form-group\">\n                                <label for=\"email\" class=\"text-info\">Email:</label><br>\n                                <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" [(ngModel)]=\"email\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"text-info\">Password:</label><br>\n                                <input type=\"text\" name=\"password\" id=\"password\" class=\"form-control\" [(ngModel)]=\"password\" required>\n\n                            </div>\n                            <div class=\"form-group\">\n                              <input type = \"submit\" name = \"Submit\" class=\"btn btn-info btn-md\" value = \"Submit\" (click)=\"onSubmit()\">\n                            </div>\n\n                            <div id=\"register-link\" class=\"text-left\" style=\"margin: 1px\">\n                                <a [routerLink] = \"['/register']\" class=\"text-info\">Need an account? Register here!</a>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n\n\n</html>\n"
 
 /***/ }),
 
@@ -5801,7 +5801,6 @@ var AuthService = /** @class */ (function () {
         return this.http.post('/api/users/createuser', user, { headers: this.headers });
     };
     AuthService.prototype.loginUser = function (user) {
-        alert(user);
         return this.http.post('/api/users/login', user, { headers: this.headers });
     };
     AuthService = __decorate([
@@ -5961,7 +5960,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/josh/COP4331-Contact-List/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/matthew/Fall2018/COP4331-Contact-List/src/main.ts */"./src/main.ts");
 
 
 /***/ })

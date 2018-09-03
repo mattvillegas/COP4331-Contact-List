@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
       };
 
     this.authService.loginUser(user).subscribe( data =>{
-
       if (data == "Success"){
         alert("Success");
       }

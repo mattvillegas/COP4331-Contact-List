@@ -17,7 +17,6 @@ export class AuthService {
   }
 
   loginUser(user){
-    alert(user);
     return this.http.post('/api/users/login', user, {headers:this.headers});
   }
 }

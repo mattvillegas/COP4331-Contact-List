@@ -68,10 +68,10 @@ app.post("/api/users/login", function(req, res) {
     else {
       if(!user)
       {
-        res.status(201).json("Success");
+        res.status(201).json("Failed");
       }
       else{
-      res.status(201).json("Failed");
+      res.status(201).json("Success");
       }
     }
   })
