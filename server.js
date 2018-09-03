@@ -1,12 +1,14 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var mongoose = require('mongoose');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require('mongoose');
 //var ObjectID = mongodb.ObjectID;
 const crypto = require("crypto");
 var CONTACTS_COLLECTION = "contacts";
 var USERS_COLLECTION = "users";
+const path = require("path");
 var app = express();
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to the database before starting the application server.
 mongoose.connect("mongodb://localhost/test");
@@ -17,6 +19,10 @@ db.once("open", function(){
 	console.log('connected');
 });
 
+  
+app.get('*', function(req,res){
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
   // Initialize the app.
   var server = app.listen(process.env.PORT || 8080, function () {
   var port = server.address().port;
@@ -52,6 +58,23 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
+app.post("/api/users/login", function(req, res) {
+  req.body.password = crypto.createHash('sha256').update(JSON.stringify(req.body.password)).digest('hex');
+  User.findOne(req.body, function(err, user) {
+    if(err){
+      handleError(res, "Database error");
+    }
+    else {
+      if(!user)
+      {
+        res.status(201).json("Log-in Failed");
+      }
+      else{
+      res.status(201).json(user);
+      }
+    }
+  })
+});
 
 // USERS API ROUTES
   app.post("/api/users/createuser", function(req, res) {
