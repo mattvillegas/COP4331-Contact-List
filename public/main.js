@@ -5783,12 +5783,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
-        this.baseUri = "http://localhost:8080/";
+        //  private baseUri:string="http://localhost:8080/";
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json');
     }
     AuthService.prototype.registerUser = function (user) {
-        console.log(user);
-        return this.http.post(this.baseUri + 'api/users/createuser', user, { headers: this.headers });
+        return this.http.post('/api/users/createuser', user, { headers: this.headers });
     };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
