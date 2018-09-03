@@ -7,9 +7,7 @@ const crypto = require("crypto");
 var CONTACTS_COLLECTION = "contacts";
 var USERS_COLLECTION = "users";
 const path = require("path");
-const cors = require("cors");
 var app = express();
-app.use(cors)
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
