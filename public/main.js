@@ -5658,11 +5658,11 @@ var HomeComponent = /** @class */ (function () {
             password: this.password
         };
         this.authService.loginUser(user).subscribe(function (data) {
-            if (data == "Success") {
-                alert("Success");
+            if (data == 'Success') {
+                alert('Success');
             }
             else {
-                alert("Failed");
+                alert('Failed');
             }
         });
     };

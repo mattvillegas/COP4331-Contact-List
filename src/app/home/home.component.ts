@@ -9,27 +9,27 @@ import { AuthService } from '../services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  token : any;
-  email : String;
+  token: any;
+  email: String;
   password: String;
 
-  constructor(private router : Router, public authService: AuthService) { }
+  constructor(private router: Router, public authService: AuthService) { }
 
   ngOnInit() {
   }
 
-   onSubmit(){
+   onSubmit() {
      const user = {
        email : this.email,
        password : this.password
       };
 
-    this.authService.loginUser(user).subscribe( data =>{
-      if (data == "Success"){
-        alert("Success");
+    this.authService.loginUser(user).subscribe( data => {
+      if (data == 'Success') {
+        alert('Success');
       }
-      else{
-        alert("Failed");
+      else {
+        alert('Failed');
       }
 
 
