@@ -15,15 +15,14 @@
                             <div class="form-group">
                                 <label for="email" class="text-info">Email:</label><br>
                                 <input type="text" name="email" id="email" class="form-control" [(ngModel)]="email" required>
-                                {{email.valid}}
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
+                                <input type="text" name="password" id="password" class="form-control" [(ngModel)]="password" required>
 
                             </div>
                             <div class="form-group">
-                              <a [routerLink] = "['/dash']"  class="btn btn-info btn-md">Submit</a>
+                              <a class="btn btn-info btn-md" (click)="onSubmit(email,password)">Submit</a>
                             </div>
 
                             <div id="register-link" class="text-left" style="margin: 1px">

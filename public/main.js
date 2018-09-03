@@ -5484,12 +5484,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
 /* harmony import */ var _dash_dash_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dash/dash.component */ "./src/app/dash/dash.component.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -5522,7 +5524,7 @@ var AppModule = /** @class */ (function () {
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(appRoutes)
             ],
-            providers: [],
+            providers: [_services_auth_service__WEBPACK_IMPORTED_MODULE_9__["AuthService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
         })
     ], AppModule);
@@ -5614,7 +5616,7 @@ module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n<body>\n\n    <div id=\"login\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\n                <div id=\"login-column\" class=\"col-md-6\">\n                    <div id=\"login-box\" class=\"col-md-12\">\n                        <form id=\"login-form\" class=\"form\" action=\"\" method=\"post\">\n                            <h3 class=\"text-center text-info\">Login</h3>\n                            <div class=\"form-group\">\n                                <label for=\"email\" class=\"text-info\">Email:</label><br>\n                                <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" [(ngModel)]=\"email\" required>\n                                {{email.valid}}\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"text-info\">Password:</label><br>\n                                <input type=\"text\" name=\"password\" id=\"password\" class=\"form-control\">\n\n                            </div>\n                            <div class=\"form-group\">\n                              <a [routerLink] = \"['/dash']\"  class=\"btn btn-info btn-md\">Submit</a>\n                            </div>\n\n                            <div id=\"register-link\" class=\"text-left\" style=\"margin: 1px\">\n                                <a [routerLink] = \"['/register']\" class=\"text-info\">Need an account? Register here!</a>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n\n\n</html>\n"
+module.exports = "<html>\n<body>\n\n    <div id=\"login\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\n                <div id=\"login-column\" class=\"col-md-6\">\n                    <div id=\"login-box\" class=\"col-md-12\">\n                        <form id=\"login-form\" class=\"form\" action=\"\" method=\"post\">\n                            <h3 class=\"text-center text-info\">Login</h3>\n                            <div class=\"form-group\">\n                                <label for=\"email\" class=\"text-info\">Email:</label><br>\n                                <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" [(ngModel)]=\"email\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"text-info\">Password:</label><br>\n                                <input type=\"text\" name=\"password\" id=\"password\" class=\"form-control\" [(ngModel)]=\"password\" required>\n\n                            </div>\n                            <div class=\"form-group\">\n                              <a class=\"btn btn-info btn-md\" (click)=\"onSubmit(email,password)\">Submit</a>\n                            </div>\n\n                            <div id=\"register-link\" class=\"text-left\" style=\"margin: 1px\">\n                                <a [routerLink] = \"['/register']\" class=\"text-info\">Need an account? Register here!</a>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n\n\n</html>\n"
 
 /***/ }),
 
@@ -5646,6 +5648,12 @@ var HomeComponent = /** @class */ (function () {
         this.router = router;
     }
     HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent.prototype.onSubmit = function () {
+        var user = {
+            email: this.email,
+            password: this.password
+        };
     };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5680,7 +5688,7 @@ module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n<body>\n\n    <div id=\"register\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\n                <div id=\"login-column\" class=\"col-md-6\">\n                    <div id=\"login-box\" class=\"col-md-12\">\n                        <form id=\"login-form\" class=\"form\" action=\"\" method=\"post\">\n                            <h3 class=\"text-center text-info\">Register</h3>\n                            <div class=\"form-group\">\n                                <label for=\"firstname\" class=\"text-info\">First Name:</label><br>\n                                <input type=\"text\" name=\"firstname\" id=\"firstname\" class=\"form-control\">\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"lastname\" class=\"text-info\">Last Name:</label><br>\n                                <input type=\"text\" name=\"lastname\" id=\"lastname\" class=\"form-control\">\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"email\" class=\"text-info\">Email:</label><br>\n                                <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\">\n                            </div>\n\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"text-info\">Password:</label><br>\n                                <input type=\"text\" name=\"password\" id=\"password\" class=\"form-control\">\n                            </div>\n\n                            <div class=\"form-group\">\n                              <input type=\"submit\" name=\"submit\" class=\"btn btn-info btn-md\" value=\"submit\">\n                            </div>\n\n                            <div id=\"register-link\" class=\"text-left\" style=\"margin: 1px\">\n                                <a [routerLink] = \"['/']\" class=\"text-info\">Already registered? Login here!</a>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n\n\n</html>\n"
+module.exports = "<html>\n<body>\n\n    <div id=\"register\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\n                <div id=\"login-column\" class=\"col-md-6\">\n                    <div id=\"login-box\" class=\"col-md-12\">\n                        <form id=\"login-form\" class=\"form\" action=\"\" method=\"post\">\n                            <h3 class=\"text-center text-info\">Register</h3>\n                            <div class=\"form-group\">\n                                <label for=\"fname\" class=\"text-info\">First Name:</label><br>\n                                <input type=\"text\" name=\"fname\" id=\"fname\" class=\"form-control\" [(ngModel)]=\"fname\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"lname\" class=\"text-info\">Last Name:</label><br>\n                                <input type=\"text\" name=\"lname\" id=\"lname\" class=\"form-control\" [(ngModel)]=\"lname\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"email\" class=\"text-info\">Email:</label><br>\n                                <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" [(ngModel)]=\"email\" required>\n                            </div>\n\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"text-info\">Password:</label><br>\n                                <input type=\"text\" name=\"password\" id=\"password\" class=\"form-control\" [(ngModel)]=\"password\" required>\n                            </div>\n\n                            <div class=\"form-group\">\n                              <input type=\"submit\" name=\"submit\" class=\"btn btn-info btn-md\" value=\"submit\" (click)=\"onRegisterSubmit()\">\n                            </div>\n\n                            <div id=\"register-link\" class=\"text-left\" style=\"margin: 1px\">\n                                <a [routerLink] = \"['/']\" class=\"text-info\">Already registered? Login here!</a>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n\n\n</html>\n"
 
 /***/ }),
 
@@ -5695,6 +5703,8 @@ module.exports = "<html>\n<body>\n\n    <div id=\"register\">\n      <div style=
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterComponent", function() { return RegisterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5705,10 +5715,32 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var RegisterComponent = /** @class */ (function () {
-    function RegisterComponent() {
+    function RegisterComponent(router, authService) {
+        this.router = router;
+        this.authService = authService;
     }
     RegisterComponent.prototype.ngOnInit = function () {
+    };
+    RegisterComponent.prototype.onRegisterSubmit = function () {
+        var _this = this;
+        var user = {
+            fname: this.fname,
+            lname: this.lname,
+            email: this.email,
+            password: this.password
+        };
+        this.authService.registerUser(user).subscribe(function (data) {
+            // this.showSuccess('You are registered and now can log in.');
+            alert('You are registered and now can log in');
+            _this.router.navigate(['/dash']);
+        }, function (error) {
+            alert('Something went wrong, please try again');
+            // this.showError();
+            _this.router.navigate(['/register']);
+        });
     };
     RegisterComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5716,9 +5748,54 @@ var RegisterComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./register.component.html */ "./src/app/register/register.component.html"),
             styles: [__webpack_require__(/*! ./register.component.css */ "./src/app/register/register.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], RegisterComponent);
     return RegisterComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/auth.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/services/auth.service.ts ***!
+  \******************************************/
+/*! exports provided: AuthService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AuthService = /** @class */ (function () {
+    function AuthService(http) {
+        this.http = http;
+        this.baseUri = "http://localhost:8080";
+        this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json');
+    }
+    AuthService.prototype.registerUser = function (user) {
+        return this.http.post(this.baseUri + 'api/users/createuser', user, { headers: this.headers });
+    };
+    AuthService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], AuthService);
+    return AuthService;
 }());
 
 

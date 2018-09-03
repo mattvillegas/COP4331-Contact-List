@@ -20,7 +20,7 @@ db.once("open", function(){
 	console.log('connected');
 });
 
-  
+
 app.get('*', function(req,res){
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
@@ -79,7 +79,7 @@ app.post("/api/users/login", function(req, res) {
 
 // USERS API ROUTES
   app.post("/api/users/createuser", function(req, res) {
-  
+
   var user = new User({
 	  createDate: new Date(),
 	  fname: req.body.fname,
@@ -93,6 +93,7 @@ app.post("/api/users/login", function(req, res) {
   } else {
       user.save(function(err, user) {
        if(err) {
+				console.log("Database Error");
         handleError(res, "Databse error", "Error saving user data");
       }
 		   else {
@@ -105,8 +106,8 @@ app.post("/api/users/login", function(req, res) {
 
 // Note this should not be publicly available, for debugging purposes only
 app.get("/api/users", function(req, res) {
-  
-    
+
+
   User.find(function(err, users) {
 	  if (err) {
 	    handleError(res, err.message, "Couldnt get users");
@@ -124,11 +125,11 @@ app.get("/api/users", function(req, res) {
  *    GET: finds all contacts associated with the user's id :id
  *    POST: creates a new contact and associates it with the user id
  *    DELETE: deletes a contact associated with the user's id
- *    
+ *
  */
 
 app.get("/api/contacts/:id", function(req, res) {
-  
+
   Contact.find({CreatedByUserID: req.params.id}, function(err, contactsFromUser) {
 	  if (err) {
 	    handleError(res, err.message, "Couldnt get contacts for this user");
@@ -136,11 +137,11 @@ app.get("/api/contacts/:id", function(req, res) {
 	  else {
 	    res.status(201).json(contactsFromUser);
 	  }
-    }) 
+    })
 });
 
 app.post("/api/contacts/create/:id", function(req, res) {
-  
+
   var contact = new Contact({
 	  createDate: new Date(),
 	  name: req.body.name,
@@ -168,13 +169,13 @@ app.post("/api/contacts/search/:id", function(req, res){
 
   // TODO: SANITIZE
   var searchFor = req.body.searchFor;
- 
+
   Contact.find({
     $and: [
       {$or: [ {"name": searchFor}, {"email" : searchFor}, {"phone": searchFor}, {"address" : searchFor} ]},
-      {CreatedByUserID : req.params.id}  
-    ]   
-  }, function(err, foundContacts){ 
+      {CreatedByUserID : req.params.id}
+    ]
+  }, function(err, foundContacts){
     if(err) {
       handleError(res, "Database error retrieving contact", "Contact not found!");
 
@@ -200,7 +201,7 @@ app.get("/api/contacts",function(req, res) {
   Contact.find(function(err, allContacts) {
     if(err) {
       handleError(res, "Error fetching contacts", "Could not fetch contacts from Database");
-    }  
+    }
     else {
       console.log("Succesfully fetched all users!");
       res.status(201).json(allContacts);

@@ -17,14 +17,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  // onSubmit(){
-  //   const user={
-  //     email = this.email,
-  //     password = this.password
-  //   };
+   onSubmit(){
+     const user = {
+       email : this.email,
+       password : this.password
+      };
 
-  //}
-
+      
+}
 
 
 
