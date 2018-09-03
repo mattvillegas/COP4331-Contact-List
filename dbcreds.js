@@ -1,1 +1,0 @@
-module.exports = {dburl:'mongodb://admin:adminpassword1@ds119020.mlab.com:19020/heroku_xkxdwzst' }
