@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   email : String;
   password: String;
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, public authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -23,7 +24,18 @@ export class HomeComponent implements OnInit {
        password : this.password
       };
 
-      
+    this.authService.loginUser(user).subscribe( data =>{
+
+      if (data == "Success"){
+        alert("Success");
+      }
+      else{
+        alert("Failed");
+      }
+
+
+
+    });
 }
 
 
