@@ -10,10 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { DashComponent } from './dash/dash.component';
 
+import {AuthService} from './services/auth.service'
 const appRoutes: Routes =[
   { path:'', component: HomeComponent },
   { path: 'register', component: RegisterComponent},
-  { path:'user/dash', component: DashComponent},
+  { path:'dash', component: DashComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
@@ -25,9 +26,13 @@ const appRoutes: Routes =[
     DashComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
+
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
