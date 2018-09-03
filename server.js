@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+const config = require('./dbcreds');
 //var ObjectID = mongodb.ObjectID;
 const crypto = require("crypto");
 var CONTACTS_COLLECTION = "contacts";
@@ -11,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to the database before starting the application server.
-mongoose.connect("mongodb://localhost/test");
+mongoose.connect(config.dburl);
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function(){
