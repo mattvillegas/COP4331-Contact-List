@@ -8,9 +8,25 @@ import { Router, Route } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  token : any;
+  email : String;
+  password: String;
+
+  constructor(private router : Router) { }
 
   ngOnInit() {
   }
+
+  // onSubmit(){
+  //   const user={
+  //     email = this.email,
+  //     password = this.password
+  //   };
+
+  //}
+
+
+
+
 
 }

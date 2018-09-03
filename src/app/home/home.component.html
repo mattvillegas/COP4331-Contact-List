@@ -14,11 +14,13 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="email" class="text-info">Email:</label><br>
-                                <input type="text" name="email" id="email" class="form-control">
+                                <input type="text" name="email" id="email" class="form-control" [(ngModel)]="email" required>
+                                {{email.valid}}
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
                                 <input type="text" name="password" id="password" class="form-control">
+
                             </div>
                             <div class="form-group">
                               <a [routerLink] = "['/dash']"  class="btn btn-info btn-md">Submit</a>
