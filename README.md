@@ -35,3 +35,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 After making sure `MongoDb` is installed on your machine, `cd` into the directory of the project and open a terminal.
 
 Run `node server.js` to start the database server and connect to the remote database. If you ran `ng build` already as detailed above, you can head to `http://localhost:8080/` to access the full website. Database functionality will work as opposed to `ng serve` which is strictly for the front end.
+
+This project is also equipped to use `nodemon server` if you choose to do so.
+
+## Heroku deployment and web access.
+
+After pushing a stable version to 'master', github will automatically deploy the project to Heroku, and the site can be accessed [here](http://shrouded-retreat-51236.herokuapp.com/). Please give the website a few moments to load if you have not accessed it in the past thirty minutes, as per Heroku's free version limitations.
