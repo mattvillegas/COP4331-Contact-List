@@ -5605,7 +5605,7 @@ var DashComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2b8;\n  height: 100vh;\n}\n#login .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 320px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#login .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#login .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n\n.ng-valid[required], .ng-valid.required  \n    border-left: 5px solid #42A948;\n}\n"
+module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2b8;\n  height: 100vh;\n}\n#login .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 358px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#login .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#login .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n\n.ng-valid[required], .ng-valid.required\n    border-left: 5px solid #42A948;\n}\n#passwordShow{\n  padding-top: 13px;\n  color: #17a2b8;\n}\n"
 
 /***/ }),
 
@@ -5616,7 +5616,7 @@ module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n<body>\n\n    <div id=\"login\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\n                <div id=\"login-column\" class=\"col-md-6\">\n                    <div id=\"login-box\" class=\"col-md-12\">\n                        <form id=\"login-form\" class=\"form\" action=\"\" method=\"post\">\n                            <h3 class=\"text-center text-info\">Login</h3>\n                            <div class=\"form-group\">\n                                <label for=\"email\" class=\"text-info\">Email:</label><br>\n                                <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" [(ngModel)]=\"email\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"text-info\">Password:</label><br>\n                                <input type=\"text\" name=\"password\" id=\"password\" class=\"form-control\" [(ngModel)]=\"password\" required>\n\n                            </div>\n                            <div class=\"form-group\">\n                              <input type = \"submit\" name = \"Submit\" class=\"btn btn-info btn-md\" value = \"Submit\" (click)=\"onSubmit()\">\n                            </div>\n\n                            <div id=\"register-link\" class=\"text-left\" style=\"margin: 1px\">\n                                <a [routerLink] = \"['/register']\" class=\"text-info\">Need an account? Register here!</a>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n\n\n</html>\n"
+module.exports = "<html>\n<body>\n\n    <div id=\"login\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\n                <div id=\"login-column\" class=\"col-md-6\">\n                    <div id=\"login-box\" class=\"col-md-12\">\n                        <form id=\"login-form\" class=\"form\" action=\"\" method=\"post\">\n                            <h3 class=\"text-center text-info\">Login</h3>\n                            <div class=\"form-group\">\n                                <label for=\"email\" class=\"text-info\">Email:</label><br>\n                                <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" [(ngModel)]=\"email\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"text-info\">Password:</label><br>\n                                <input type=\"password\" name=\"password\" id=\"password\" class=\"form-control\" [(ngModel)]=\"password\" required>\n                                <div id=passwordShow>\n                                <input type=\"checkbox\" (click)=\"showPassword()\"> Show Password\n                              </div>\n                            </div>\n                            <div class=\"form-group\">\n                              <input type = \"submit\" name = \"Submit\" class=\"btn btn-info btn-md\" value = \"Submit\" (click)=\"onSubmit()\">\n                            </div>\n\n                            <div id=\"register-link\" class=\"text-left\" style=\"margin: 1px\">\n                                <a [routerLink] = \"['/register']\" class=\"text-info\">Need an account? Register here!</a>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n\n\n</html>\n"
 
 /***/ }),
 
@@ -5651,6 +5651,15 @@ var HomeComponent = /** @class */ (function () {
         this.authService = authService;
     }
     HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent.prototype.showPassword = function () {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        }
+        else {
+            x.type = "password";
+        }
     };
     HomeComponent.prototype.onSubmit = function () {
         var user = {
@@ -5688,7 +5697,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2b8;\n  height: 100vh;\n}\n#register .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 500px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#register .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#register .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n"
+module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2b8;\n  height: 100vh;\n}\n#register .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 525px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#register .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#register .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n#passwordShow{\n  padding-bottom: 10px;\n  color: #17a2b8;\n}\n"
 
 /***/ }),
 
@@ -5699,7 +5708,7 @@ module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html>\n<body>\n\n    <div id=\"register\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\n                <div id=\"login-column\" class=\"col-md-6\">\n                    <div id=\"login-box\" class=\"col-md-12\">\n                        <form id=\"login-form\" class=\"form\" action=\"\" method=\"post\">\n                            <h3 class=\"text-center text-info\">Register</h3>\n                            <div class=\"form-group\">\n                                <label for=\"fname\" class=\"text-info\">First Name:</label><br>\n                                <input type=\"text\" name=\"fname\" id=\"fname\" class=\"form-control\" [(ngModel)]=\"fname\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"lname\" class=\"text-info\">Last Name:</label><br>\n                                <input type=\"text\" name=\"lname\" id=\"lname\" class=\"form-control\" [(ngModel)]=\"lname\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"email\" class=\"text-info\">Email:</label><br>\n                                <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" [(ngModel)]=\"email\" required>\n                            </div>\n\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"text-info\">Password:</label><br>\n                                <input type=\"text\" name=\"password\" id=\"password\" class=\"form-control\" [(ngModel)]=\"password\" required>\n                            </div>\n\n                            <div class=\"form-group\">\n                              <input type=\"submit\" name=\"submit\" class=\"btn btn-info btn-md\" value=\"submit\" (click)=\"onRegisterSubmit()\">\n                            </div>\n\n                            <div id=\"register-link\" class=\"text-left\" style=\"margin: 1px\">\n                                <a [routerLink] = \"['/']\" class=\"text-info\">Already registered? Login here!</a>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n\n\n</html>\n"
+module.exports = "<html>\n<body>\n\n    <div id=\"register\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\n                <div id=\"login-column\" class=\"col-md-6\">\n                    <div id=\"login-box\" class=\"col-md-12\">\n                        <form id=\"login-form\" class=\"form\" action=\"\" method=\"post\">\n                            <h3 class=\"text-center text-info\">Register</h3>\n                            <div class=\"form-group\">\n                                <label for=\"fname\" class=\"text-info\">First Name:</label><br>\n                                <input type=\"text\" name=\"fname\" id=\"fname\" class=\"form-control\" [(ngModel)]=\"fname\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"lname\" class=\"text-info\">Last Name:</label><br>\n                                <input type=\"text\" name=\"lname\" id=\"lname\" class=\"form-control\" [(ngModel)]=\"lname\" required>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"email\" class=\"text-info\">Email:</label><br>\n                                <input type=\"text\" name=\"email\" id=\"email\" class=\"form-control\" [(ngModel)]=\"email\" required>\n                            </div>\n\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"text-info\">Password:</label><br>\n                                <input type=\"password\" name=\"password\" id=\"password\" class=\"form-control\" [(ngModel)]=\"password\" required>\n                            </div>\n                            <div id=passwordShow>\n                            <input type=\"checkbox\" (click)=\"showPassword()\"> Show Password\n                          </div>\n\n                            <div class=\"form-group\">\n                              <input type=\"submit\" name=\"submit\" class=\"btn btn-info btn-md\" value=\"submit\" (click)=\"onRegisterSubmit()\">\n                            </div>\n\n                            <div id=\"register-link\" class=\"text-left\" style=\"margin: 1px\">\n                                <a [routerLink] = \"['/']\" class=\"text-info\">Already registered? Login here!</a>\n                            </div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n\n\n</html>\n"
 
 /***/ }),
 
@@ -5734,6 +5743,15 @@ var RegisterComponent = /** @class */ (function () {
         this.authService = authService;
     }
     RegisterComponent.prototype.ngOnInit = function () {
+    };
+    RegisterComponent.prototype.showPassword = function () {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        }
+        else {
+            x.type = "password";
+        }
     };
     RegisterComponent.prototype.onRegisterSubmit = function () {
         var _this = this;
@@ -5960,7 +5978,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/matthew/Fall2018/COP4331-Contact-List/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/josh/COP4331-Contact-List/src/main.ts */"./src/main.ts");
 
 
 /***/ })

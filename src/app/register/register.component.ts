@@ -19,6 +19,15 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  showPassword() {
+   var x = (<HTMLInputElement>document.getElementById("password"));
+   if (x.type === "password") {
+       x.type = "text";
+   } else {
+       x.type = "password";
+   }
+  }
+
   onRegisterSubmit() {
     const user = {
       fname : this.fname,

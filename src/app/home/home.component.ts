@@ -18,6 +18,15 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+   showPassword() {
+    var x = (<HTMLInputElement>document.getElementById("password"));
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
    onSubmit() {
      const user = {
        email : this.email,
