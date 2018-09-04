@@ -190,6 +190,17 @@ app.post("/api/contacts/search/:id", function(req, res){
   })
 });
 
+app.post("/api/contacts/update/:id", function(req, res){
+	Contact.findOneAndUpdate(req.params.id, req.body, {new: true}, function(err, model) {
+		if(err) {
+			handleError(res, "Error updating", "Error updating contact");
+		}
+		else {
+			res.status(201).json(model);
+		}
+	})
+});
+
 /* "/api/contacts/"
       GET: Print all contacts in database
 
