@@ -17,3 +17,10 @@ body {
 #dash .container #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
 }
+#dash .btn-info {
+  background-color: #779ECB;
+  border-color: #779ECB;
+}
+#dash .text-info {
+  color: #779ECB!important;
+}

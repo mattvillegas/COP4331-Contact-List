@@ -20,7 +20,13 @@ body {
 .ng-valid[required], .ng-valid.required
     border-left: 5px solid #42A948;
 }
-
+#login .btn-info {
+  background-color: #779ECB;
+  border-color: #779ECB;
+}
+#login .text-info {
+  color: #779ECB!important;
+}
 #passwordShow{
   padding-top: 13px;
   color: #779ECB;
