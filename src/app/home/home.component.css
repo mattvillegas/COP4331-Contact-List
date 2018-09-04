@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #17a2b8;
+  background-color: #779ECB;
   height: 100vh;
 }
 #login .container #login-row #login-column #login-box {
@@ -23,5 +23,5 @@ body {
 
 #passwordShow{
   padding-top: 13px;
-  color: #17a2b8;
+  color: #779ECB;
 }
