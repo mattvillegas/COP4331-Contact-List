@@ -1,27 +1,37 @@
-# ContactList
+# Contact List
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
+A personal contact manager web app used to perform CRUD operations on contacts made by users.
+This app features login functionality, allowing each user to have contacts unique to their account
 
-## Development server
+## Contributors
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Matthew Villegas: Database Development  
+Justin Zabel:     Database Development  
+Joshua Lecas:     Angular Development   
+Sebastian Krupa:  HTML/CSS Development  
+Shelby Basco:     UML/ERD Documentation  
+John Hacker:      Front End Development  
+Daniil Klishin:   Front End Development  
+Eduardo Guevara:  Caught the flu lol  
 
-## Code scaffolding
+## Front End Development Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`git clone` the repository onto your local machine.
 
-## Build
+Make sure `node.js` is installed onto your machine.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `npm install -g @angular/cli` to install Angular
 
-## Running unit tests
+`cd` into the folder of the repository, and run `npm install` to grab the required dependencies.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To start the Angular server, run `ng serve` and navigate in your web browser to `http://localhost:4200/` to get 
+to the log in page. Any changes made to the front end or angular components will reload automatically as you
+save the files in your text editor.
 
-## Running end-to-end tests
+## Build and run the database
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng build` to build the project. The build artifacts will be stored in the `public/` directory. If you are pushing to github, make sure you have run this command beforehand.
 
-## Further help
+After making sure `MongoDb` is installed on your machine, `cd` into the directory of the project and open a terminal.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `node server.js` to start the database server and connect to the remote database. If you ran `ng build` already as detailed above, you can head to `http://localhost:8080/` to access the full website. Database functionality will work as opposed to `ng serve` which is strictly for the front end.
