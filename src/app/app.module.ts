@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { DashComponent } from './dash/dash.component';
 
+import {AuthService} from './services/auth.service'
 const appRoutes: Routes =[
   { path:'', component: HomeComponent },
   { path: 'register', component: RegisterComponent},
@@ -31,7 +32,7 @@ const appRoutes: Routes =[
     RouterModule.forRoot(appRoutes)
 
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
