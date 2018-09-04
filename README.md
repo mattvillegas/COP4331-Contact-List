@@ -14,7 +14,8 @@ John Hacker:      Front End Development
 Daniil Klishin:   Front End Development  
 Eduardo Guevara:  Caught the flu lol  
 
-## Front End Development Installation (limited to HTML/CSS/Angular.js development, database functionality halted)
+## Front End Development Installation 
+### (limited to HTML/CSS/Angular.js development, database functionality halted)
 
 `git clone` the repository onto your local machine.
 
