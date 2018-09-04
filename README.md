@@ -32,8 +32,6 @@ save the files in your text editor.
 
 Run `ng build` to build the project. The build artifacts will be stored in the `public/` directory. If you are pushing to github, make sure you have run this command beforehand.
 
-After making sure `MongoDb` is installed on your machine, `cd` into the directory of the project and open a terminal.
-
 Run `node server.js` to start the database server and connect to the remote database. If you ran `ng build` already as detailed above, you can head to `http://localhost:8080/` to access the full website. Database functionality will work as opposed to `ng serve` which is strictly for the front end.
 
 This project is also equipped to use `nodemon server` if you choose to do so.
