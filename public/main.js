@@ -5542,7 +5542,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2b8;\n  height: 100vh;\n}\n#dash .container  {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 500px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#dash .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#dash .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n"
+module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#dash .container  {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 500px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#dash .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#dash .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n#dash .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#dash .text-info {\n  color: #779ECB!important;\n}\n"
 
 /***/ }),
 
@@ -5605,7 +5605,7 @@ var DashComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2b8;\n  height: 100vh;\n}\n#login .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 358px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#login .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#login .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n\n.ng-valid[required], .ng-valid.required\n    border-left: 5px solid #42A948;\n}\n#passwordShow{\n  padding-top: 13px;\n  color: #17a2b8;\n}\n"
+module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#login .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 358px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#login .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#login .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n\n.ng-valid[required], .ng-valid.required\n    border-left: 5px solid #42A948;\n}\n#login .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#login .text-info {\n  color: #779ECB!important;\n}\n#passwordShow{\n  padding-top: 13px;\n  color: #779ECB;\n}\n"
 
 /***/ }),
 
@@ -5697,7 +5697,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #17a2b8;\n  height: 100vh;\n}\n#register .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 525px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#register .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#register .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n#passwordShow{\n  padding-bottom: 10px;\n  color: #17a2b8;\n}\n"
+module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#register .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 525px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#register .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#register .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n#register .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#register .text-info {\n  color: #779ECB!important;\n}\n#passwordShow{\n  padding-bottom: 10px;\n  color: #779ECB;\n}\n"
 
 /***/ }),
 
@@ -5978,7 +5978,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/josh/COP4331-Contact-List/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/sebastian/Desktop/Junior/POOP/COP4331-Contact-List/src/main.ts */"./src/main.ts");
 
 
 /***/ })
