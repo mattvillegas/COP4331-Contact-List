@@ -59,6 +59,10 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
+app.get("/register/", function(req,res) {
+	res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 app.post("/api/users/login", function(req, res) {
   req.body.password = crypto.createHash('sha256').update(JSON.stringify(req.body.password)).digest('hex');
   User.findOne(req.body, function(err, user) {
@@ -187,6 +191,17 @@ app.post("/api/contacts/search/:id", function(req, res){
         }
     }
   })
+});
+
+app.post("/api/contacts/update/:id", function(req, res){
+	Contact.findOneAndUpdate(req.params.id, req.body, {new: true}, function(err, model) {
+		if(err) {
+			handleError(res, "Error updating", "Error updating contact");
+		}
+		else {
+			res.status(201).json(model);
+		}
+	})
 });
 
 /* "/api/contacts/"
