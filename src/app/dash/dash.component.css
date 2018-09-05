@@ -1,7 +1,11 @@
+
+html{
+  background-color:  #779ECB;
+}
 body {
   margin: 0;
   padding: 0;
-  background-color: #17a2b8;
+  background-color: #779ECB;
   height: 100vh;
 }
 #dash .container  {
@@ -16,4 +20,11 @@ body {
 }
 #dash .container #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
+}
+#dash .btn-info {
+  background-color: #779ECB;
+  border-color: #779ECB;
+}
+#dash .text-info {
+  color: #779ECB!important;
 }

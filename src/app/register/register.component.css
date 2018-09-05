@@ -1,13 +1,17 @@
+html{
+  background-color:  #779ECB;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #17a2b8;
+  background-color: #779ECB;
   height: 100vh;
 }
 #register .container #login-row #login-column #login-box {
   margin-top: 30px;
   max-width: 600px;
-  height: 500px;
+  height: 525px;
   box-shadow: 0px 0px 20px grey;
   background-color: #EAEAEA;
 }
@@ -16,4 +20,15 @@ body {
 }
 #register .container #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
+}
+#register .btn-info {
+  background-color: #779ECB;
+  border-color: #779ECB;
+}
+#register .text-info {
+  color: #779ECB!important;
+}
+#passwordShow{
+  padding-bottom: 10px;
+  color: #779ECB;
 }

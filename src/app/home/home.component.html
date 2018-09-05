@@ -1,4 +1,4 @@
-<html>
+<html style="background-color:#779ECB;" >
 <body>
 
     <div id="login">
@@ -18,11 +18,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control" [(ngModel)]="password" required>
-
+                                <input type="password" name="password" id="password" class="form-control" [(ngModel)]="password" required>
+                                <div id=passwordShow>
+                                <input type="checkbox" (click)="showPassword()"> Show Password
+                              </div>
                             </div>
                             <div class="form-group">
-                              <a class="btn btn-info btn-md" (click)="onSubmit(email,password)">Submit</a>
+                              <input type = "submit" name = "Submit" class="btn btn-info btn-md" value = "Submit" (click)="onSubmit()">
                             </div>
 
                             <div id="register-link" class="text-left" style="margin: 1px">

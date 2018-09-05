@@ -14,21 +14,30 @@ export class RegisterComponent implements OnInit {
   email: String;
   password: String;
 
-  constructor(private router : Router,  public authService: AuthService) { }
+  constructor(private router: Router,  public authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  onRegisterSubmit(){
-    const user={
+  showPassword() {
+   var x = (<HTMLInputElement>document.getElementById("password"));
+   if (x.type === "password") {
+       x.type = "text";
+   } else {
+       x.type = "password";
+   }
+  }
+
+  onRegisterSubmit() {
+    const user = {
       fname : this.fname,
       lname: this.lname,
       email : this.email,
       password : this.password
-    }
+    };
 
     this.authService.registerUser(user).subscribe(
-      data =>{
+      data => {
         // this.showSuccess('You are registered and now can log in.');
         alert('You are registered and now can log in');
         this.router.navigate(['/home']);
