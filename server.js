@@ -234,3 +234,19 @@ app.get("/api/contacts",function(req, res) {
 
   })
 });
+
+app.post("/api/contacts/delete/:id",   function(req, res) {
+  Contact.findOneAndDelete({_id: req.params.id}, function(err, deletedContact){
+    if(err)
+    {
+      handleError(res, "Database error while deleting", "Failed to delete contact");
+    } else {
+      if(!deletedContact)
+      {
+        res.json({"error": "Failed to delete contact"});
+      } else {
+        res.json("Success!");
+      }
+    }
+  })
+});
