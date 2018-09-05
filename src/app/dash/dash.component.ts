@@ -15,5 +15,6 @@ export class DashComponent implements OnInit {
       this.router.navigate(['/home']);
     }
   }
+  
 
 }
