@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, Route } from '@angular/router';
 
 @Component({
   selector: 'app-dash',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    if (sessionStorage.length == 0){
+      this.router.navigate(['/home']);
+    }
   }
 
 }

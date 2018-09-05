@@ -14,7 +14,7 @@ export class AuthService {
 
   // Store user info in local storage
   storeUser(user){
-    localStorage.setItem('user', JSON.stringify(user));
+    sessionStorage.setItem('user', JSON.stringify(user));
     this.user = user;
   }
 
