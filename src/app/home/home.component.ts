@@ -34,15 +34,21 @@ export class HomeComponent implements OnInit {
       };
 
     this.authService.loginUser(user).subscribe( data => {
-      if (data == 'Success') {
-        alert('Success');
+      if (data == 'Failed') {
+        alert('User not found, please try again');
+        this.router.navigate(['/home']);
       }
       else {
-        alert('Failed');
+        const user = data['user'];
+        this.authService.storeUser(user)
+        this.router.navigate(['/dash'])// TO DO success
       }
 
 
 
+    }, err =>{
+      alert('Oh no! Something went wrong. Please try again!');
+      this.router.navigate(['/home']);
     });
 }
 
