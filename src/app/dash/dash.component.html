@@ -6,10 +6,65 @@
         <h1 class="text-center text-white display-1">Contact Manager</h1>
         <h3 class="text-center text-white">A simple contact manager utilizing the MEAN stack</h3>
       </div>
-        <div class="container">
-            
-        </div>
     </div>
+
+        <div class="container" id="cont">
+          <div class="row">
+            <h2>Welcome {{user.fname}}, add or search for a contact below.</h2>
+          </div>
+          <div class="row">
+            <table class="table table-hover">
+              <tbody>
+                <td>
+                  <div class="form-group">
+                      <input placeholder="Enter Name" type="text" name="inputString" [(ngModel)] = "inputString" class="form-control">
+                  </div>
+                </td>
+                <td><button class="btn btn-success" (click)="search_contact()">Search</button></td>
+              </tbody>
+            </table>
+          </div>
+        <div class="row">
+          <div class="col-md-3">
+            <table class="table">
+              <tbody>
+                <tr><h3>Add a contact</h3></tr>
+                <tr><input placeholder="Enter First Name" type="text" name="inputString" [(ngModel)] = "name" class="form-control"></tr>
+                <tr><input placeholder="Enter Phone #" type="text" name="inputString" [(ngModel)] = "phone" class="form-control"></tr>
+                <tr><input placeholder="Enter Email" type="text" name="inputString" [(ngModel)] = "email" class="form-control"></tr>
+                <tr><input placeholder="Enter Address" type="text" name="inputString" [(ngModel)] = "address" class="form-control"></tr>
+                <tr><button class="btn btn-success" (click)="onAddButton()">Add</button></tr>
+              </tbody>
+            </table>
+          </div>
+        <div class="col-md-9">
+          <h3>Contacts:</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th><h6><strong>Name</strong></h6></th>
+                <th><h6><strong>Phone</strong></h6></th>
+                <th><h6><strong>Email</strong></h6></th>
+                <th><h6><strong>Address</strong></h6></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                 <!-- <tr *ngFor="let contact of hack(contactlist) | filter:inputString; let i = index">
+                  <td>{{contact.name}}</td>
+                  <td>{{contact.phone}}</td>
+                  <td>{{contact.email}}</td>
+                  <td>{{contact.address}}</td> -->
+                  <td>
+                      <button class="close" aria-label="Close"(click)="onDeleteButton(contact)"><span aria-hidden="true">&times;</span></button>&nbsp;
+                      <button class="btn btn-info" (click)="onEditButton(contact)" >Edit</button>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
 </body>
 
 

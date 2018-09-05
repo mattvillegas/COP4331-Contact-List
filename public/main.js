@@ -5485,12 +5485,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
 /* harmony import */ var _dash_dash_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dash/dash.component */ "./src/app/dash/dash.component.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -5524,7 +5526,7 @@ var AppModule = /** @class */ (function () {
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(appRoutes)
             ],
-            providers: [_services_auth_service__WEBPACK_IMPORTED_MODULE_9__["AuthService"]],
+            providers: [_services_auth_service__WEBPACK_IMPORTED_MODULE_9__["AuthService"], _services_validate_service__WEBPACK_IMPORTED_MODULE_10__["ValidateService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
         })
     ], AppModule);
@@ -5542,7 +5544,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\nhtml{\n  background-color:  #779ECB;\n}\nbody {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#dash .container  {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 500px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#dash .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#dash .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n#dash .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#dash .text-info {\n  color: #779ECB!important;\n}\n"
+module.exports = "\nhtml{\n  background-color:  #779ECB;\n}\nbody {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#dash .container  {\n  margin-top: 30px;\n\n  height: 500px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#dash .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#dash .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n#dash .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#dash .text-info {\n  color: #779ECB!important;\n}\n#cont{\n  background-color:  #EAEAEA;\n}\n.alignRight{\n  text-align: right;\n}\n"
 
 /***/ }),
 
@@ -5553,7 +5555,7 @@ module.exports = "\nhtml{\n  background-color:  #779ECB;\n}\nbody {\n  margin: 0
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html style=\"background-color:#779ECB;\" >\n<body>\n\n    <div id=\"dash\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            \n        </div>\n    </div>\n</body>\n\n\n</html>\n"
+module.exports = "<html style=\"background-color:#779ECB;\" >\n<body>\n\n    <div id=\"dash\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n    </div>\n\n        <div class=\"container\" id=\"cont\">\n          <div class=\"row\">\n            <h2>Welcome {{user.fname}}, add or search for a contact below.</h2>\n          </div>\n          <div class=\"row\">\n            <table class=\"table table-hover\">\n              <tbody>\n                <td>\n                  <div class=\"form-group\">\n                      <input placeholder=\"Enter Name\" type=\"text\" name=\"inputString\" [(ngModel)] = \"inputString\" class=\"form-control\">\n                  </div>\n                </td>\n                <td><button class=\"btn btn-success\" (click)=\"search_contact()\">Search</button></td>\n              </tbody>\n            </table>\n          </div>\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <table class=\"table\">\n              <tbody>\n                <tr><h3>Add a contact</h3></tr>\n                <tr><input placeholder=\"Enter First Name\" type=\"text\" name=\"inputString\" [(ngModel)] = \"name\" class=\"form-control\"></tr>\n                <tr><input placeholder=\"Enter Phone #\" type=\"text\" name=\"inputString\" [(ngModel)] = \"phone\" class=\"form-control\"></tr>\n                <tr><input placeholder=\"Enter Email\" type=\"text\" name=\"inputString\" [(ngModel)] = \"email\" class=\"form-control\"></tr>\n                <tr><input placeholder=\"Enter Address\" type=\"text\" name=\"inputString\" [(ngModel)] = \"address\" class=\"form-control\"></tr>\n                <tr><button class=\"btn btn-success\" (click)=\"onAddButton()\">Add</button></tr>\n              </tbody>\n            </table>\n          </div>\n        <div class=\"col-md-9\">\n          <h3>Contacts:</h3>\n          <table class=\"table table-hover\">\n            <thead>\n              <tr>\n                <th><h6><strong>Name</strong></h6></th>\n                <th><h6><strong>Phone</strong></h6></th>\n                <th><h6><strong>Email</strong></h6></th>\n                <th><h6><strong>Address</strong></h6></th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                 <!-- <tr *ngFor=\"let contact of hack(contactlist) | filter:inputString; let i = index\">\n                  <td>{{contact.name}}</td>\n                  <td>{{contact.phone}}</td>\n                  <td>{{contact.email}}</td>\n                  <td>{{contact.address}}</td> -->\n                  <td>\n                      <button class=\"close\" aria-label=\"Close\"(click)=\"onDeleteButton(contact)\"><span aria-hidden=\"true\">&times;</span></button>&nbsp;\n                      <button class=\"btn btn-info\" (click)=\"onEditButton(contact)\" >Edit</button>\n                  </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n      </div>\n</body>\n\n\n</html>\n"
 
 /***/ }),
 
@@ -5569,6 +5571,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashComponent", function() { return DashComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5580,14 +5583,41 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var DashComponent = /** @class */ (function () {
-    function DashComponent(router) {
+    function DashComponent(router, authService) {
         this.router = router;
+        this.authService = authService;
+        this._id = null;
     }
     DashComponent.prototype.ngOnInit = function () {
-        if (sessionStorage.length == 0) {
-            this.router.navigate(['/home']);
+        //if (sessionStorage.length == 0){
+        //this.router.navigate(['/home']);
+        var temp = sessionStorage.getItem('user');
+        this.user = JSON.parse(temp);
+        this.user_id = this.user['id'];
+    };
+    DashComponent.prototype.onAddButton = function () {
+        var new_contact = {
+            _id: this._id,
+            name: this.name,
+            phone: this.phone,
+            email: this.email,
+            address: this.address,
+            CreatedByUserID: this.user_id
+        };
+        if (new_contact._id == null) {
+            this.AddContact(new_contact);
         }
+        else {
+            if (new_contact._id != null) {
+                this.EditContact(new_contact);
+            }
+        }
+    };
+    DashComponent.prototype.AddContact = function (NewContact) {
+    };
+    DashComponent.prototype.EditContact = function (OldContact) {
     };
     DashComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5595,7 +5625,7 @@ var DashComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dash.component.html */ "./src/app/dash/dash.component.html"),
             styles: [__webpack_require__(/*! ./dash.component.css */ "./src/app/dash/dash.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], DashComponent);
     return DashComponent;
 }());
@@ -5639,6 +5669,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/validate.service */ "./src/app/services/validate.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5651,10 +5682,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(router, authService) {
+    function HomeComponent(router, authService, validateService) {
         this.router = router;
         this.authService = authService;
+        this.validateService = validateService;
     }
     HomeComponent.prototype.ngOnInit = function () {
     };
@@ -5673,6 +5706,10 @@ var HomeComponent = /** @class */ (function () {
             email: this.email,
             password: this.password
         };
+        if (!this.validateService.validateLogin(user)) {
+            alert('Please fill in all fields!');
+            return false;
+        }
         this.authService.loginUser(user).subscribe(function (data) {
             if (data == 'Failed') {
                 alert('User not found, please try again');
@@ -5694,7 +5731,7 @@ var HomeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/home/home.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _services_validate_service__WEBPACK_IMPORTED_MODULE_3__["ValidateService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -5738,6 +5775,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/validate.service */ "./src/app/services/validate.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5750,10 +5788,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var RegisterComponent = /** @class */ (function () {
-    function RegisterComponent(router, authService) {
+    function RegisterComponent(router, authService, validateService) {
         this.router = router;
         this.authService = authService;
+        this.validateService = validateService;
     }
     RegisterComponent.prototype.ngOnInit = function () {
     };
@@ -5774,6 +5814,14 @@ var RegisterComponent = /** @class */ (function () {
             email: this.email,
             password: this.password
         };
+        if (!this.validateService.validateRegister(user)) {
+            alert('Please fill in all fields');
+            return false;
+        }
+        if (!this.validateService.validateEmail(user.email)) {
+            alert('Please use a valid email');
+            return false;
+        }
         this.authService.registerUser(user).subscribe(function (data) {
             // this.showSuccess('You are registered and now can log in.');
             alert('You are registered and now can log in');
@@ -5790,7 +5838,7 @@ var RegisterComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./register.component.html */ "./src/app/register/register.component.html"),
             styles: [__webpack_require__(/*! ./register.component.css */ "./src/app/register/register.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _services_validate_service__WEBPACK_IMPORTED_MODULE_3__["ValidateService"]])
     ], RegisterComponent);
     return RegisterComponent;
 }());
@@ -5840,6 +5888,17 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.loginUser = function (user) {
         return this.http.post('/api/users/login', user, { headers: this.headers });
     };
+    // Endpoints for interacting with Contacts
+    AuthService.prototype.addContact = function (user, contact) {
+        return this.http.post('/api/contacts/create/:' + this.user._id, contact, { headers: this.headers });
+    };
+    AuthService.prototype.updateContact = function (contact) {
+        return this.http.put('/api/contacts/update/:' + this.user._id, contact, { headers: this.headers });
+    };
+    AuthService.prototype.deleteContact = function (contact) {
+        var id = contact._id;
+        return this.http.delete('/api/contacts/delete' + id, { headers: this.headers });
+    };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
@@ -5847,6 +5906,61 @@ var AuthService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], AuthService);
     return AuthService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/validate.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/services/validate.service.ts ***!
+  \**********************************************/
+/*! exports provided: ValidateService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ValidateService", function() { return ValidateService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ValidateService = /** @class */ (function () {
+    function ValidateService() {
+    }
+    ValidateService.prototype.validateRegister = function (user) {
+        if (user.fname == undefined || user.email == undefined || user.lname == undefined || user.password == undefined) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    ValidateService.prototype.validateLogin = function (user) {
+        if (user.email == undefined || user.password == undefined) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    ValidateService.prototype.validateEmail = function (email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    };
+    ValidateService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], ValidateService);
+    return ValidateService;
 }());
 
 
