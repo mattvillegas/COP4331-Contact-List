@@ -63,6 +63,10 @@ app.get("/register/", function(req,res) {
 	res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
+app.get("/dash/", function(req,res) {
+	res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 app.post("/api/users/login", function(req, res) {
   req.body.password = crypto.createHash('sha256').update(JSON.stringify(req.body.password)).digest('hex');
   User.findOne(req.body, function(err, user) {
