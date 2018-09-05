@@ -5568,6 +5568,7 @@ module.exports = "<html style=\"background-color:#779ECB;\" >\n<body>\n\n    <di
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashComponent", function() { return DashComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5578,10 +5579,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var DashComponent = /** @class */ (function () {
-    function DashComponent() {
+    function DashComponent(router) {
+        this.router = router;
     }
     DashComponent.prototype.ngOnInit = function () {
+        if (sessionStorage.length == 0) {
+            this.router.navigate(['/home']);
+        }
     };
     DashComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5589,7 +5595,7 @@ var DashComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dash.component.html */ "./src/app/dash/dash.component.html"),
             styles: [__webpack_require__(/*! ./dash.component.css */ "./src/app/dash/dash.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], DashComponent);
     return DashComponent;
 }());
@@ -5824,7 +5830,7 @@ var AuthService = /** @class */ (function () {
     }
     // Store user info in local storage
     AuthService.prototype.storeUser = function (user) {
-        localStorage.setItem('user', JSON.stringify(user));
+        sessionStorage.setItem('user', JSON.stringify(user));
         this.user = user;
     };
     // Endpoints for logging in and registering user
