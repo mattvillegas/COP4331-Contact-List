@@ -12,6 +12,14 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  // Store user info in local storage
+  storeUser(user){
+    localStorage.setItem('user', JSON.stringify(user));
+    this.user = user;
+  }
+
+
+  // Endpoints for logging in and registering user
   registerUser(user){
     return this.http.post('/api/users/createuser', user, {headers:this.headers});
   }

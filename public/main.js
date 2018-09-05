@@ -5662,17 +5662,24 @@ var HomeComponent = /** @class */ (function () {
         }
     };
     HomeComponent.prototype.onSubmit = function () {
+        var _this = this;
         var user = {
             email: this.email,
             password: this.password
         };
         this.authService.loginUser(user).subscribe(function (data) {
-            if (data == 'Success') {
-                alert('Success');
+            if (data == 'Failed') {
+                alert('User not found, please try again');
+                _this.router.navigate(['/home']);
             }
             else {
-                alert('Failed');
+                var user_1 = data['user'];
+                _this.authService.storeUser(user_1);
+                _this.router.navigate(['/dash']); // TO DO success
             }
+        }, function (err) {
+            alert('Oh no! Something went wrong. Please try again!');
+            _this.router.navigate(['/home']);
         });
     };
     HomeComponent = __decorate([
@@ -5815,6 +5822,12 @@ var AuthService = /** @class */ (function () {
         // private baseUri:string="http://localhost:8080/";
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json');
     }
+    // Store user info in local storage
+    AuthService.prototype.storeUser = function (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.user = user;
+    };
+    // Endpoints for logging in and registering user
     AuthService.prototype.registerUser = function (user) {
         return this.http.post('/api/users/createuser', user, { headers: this.headers });
     };
@@ -5978,7 +5991,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/sebastian/Desktop/Junior/POOP/COP4331-Contact-List/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/josh/COP4331-Contact-List/src/main.ts */"./src/main.ts");
 
 
 /***/ })
