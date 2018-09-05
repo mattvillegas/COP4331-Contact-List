@@ -75,7 +75,15 @@ app.post("/api/users/login", function(req, res) {
         res.status(201).json("Failed");
       }
       else{
-      res.status(201).json("Success");
+      //res.status(201).json("Success");
+	  res.json({
+		  user:{
+			  id: user._id,
+			  fname: user.fname,
+			  lname: user.lname,
+			  email: user.email
+		  }
+	  });
       }
     }
   })
