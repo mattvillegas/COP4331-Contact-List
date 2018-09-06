@@ -57,6 +57,7 @@
                   <td>{{contact.address}}</td>
                   <td>
                       <button class="close" aria-label="Close"(click)="onDeleteButton(contact)"><span aria-hidden="true">&times;</span></button>&nbsp;
+					  <button class="btn btn-info" (click)="onMapsButton(contact.address)" style="background-color:#779ECB; border-color:#779ECB;">Open in Google Maps</button>
                       <button class="btn btn-info" (click)="onEditButton(contact)" style="background-color:#779ECB; border-color:#779ECB;  ">Edit</button>
                   </td>
               </tr>

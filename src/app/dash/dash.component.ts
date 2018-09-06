@@ -98,5 +98,15 @@ export class DashComponent implements OnInit {
     }
   }
 
+  onMapsButton(address){
+	  //String baseURL = 'https://www.google.com/maps/dir/?api=1&origin=';
+	  //String userLoc = '';
+	  //String destURL = '&destination=' + address + '&travelmode=driving';
+	  
+	  // do stuff
+	  
+	  //String finalURL = baseURL + userLoc + destURL;
+	  alert(address);
+  }
 
 }
