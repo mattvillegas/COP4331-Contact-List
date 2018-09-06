@@ -29,10 +29,10 @@
             <table class="table">
               <tbody>
                 <tr><h3>Add a contact</h3></tr>
-                <tr><input placeholder="Enter First Name" type="text" name="inputString" [(ngModel)] = "name" class="form-control"></tr>
-                <tr><input placeholder="Enter Phone #" type="text" name="inputString" [(ngModel)] = "phone" class="form-control"></tr>
-                <tr><input placeholder="Enter Email" type="text" name="inputString" [(ngModel)] = "email" class="form-control"></tr>
-                <tr><input placeholder="Enter Address" type="text" name="inputString" [(ngModel)] = "address" class="form-control"></tr>
+                <tr><input placeholder="Enter Name" type="text" name="name" [(ngModel)] = "name" class="form-control"></tr>
+                <tr><input placeholder="Enter Phone #" type="text" name="phone" [(ngModel)] = "phone" class="form-control"></tr>
+                <tr><input placeholder="Enter Email" type="text" name="email" [(ngModel)] = "email" class="form-control"></tr>
+                <tr><input placeholder="Enter Address" type="text" name="address" [(ngModel)] = "address" class="form-control"></tr>
                 <tr><button class="btn btn-success" (click)="onAddButton()">Add</button></tr>
               </tbody>
             </table>
