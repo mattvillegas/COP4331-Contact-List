@@ -30,16 +30,19 @@ export class AuthService {
   }
 
   // Endpoints for interacting with Contacts
-  addContact(user, contact: Contact){
-    return this.http.post('/api/contacts/create/:'+this.user._id, contact, {headers:this.headers});
+  getContacts(){
+  return this.http.get('/api/contacts/'+this.user.id, {headers:this.headers});
+}
+
+  addContact(contact: Contact){
+    return this.http.post('/api/contacts/create/'+this.user.id, contact, {headers:this.headers});
   }
 
   updateContact(contact: Contact){
-    return this.http.put('/api/contacts/update/:'+this.user._id, contact, {headers:this.headers});
+    return this.http.put('/api/contacts/update/'+this.user.id, contact, {headers:this.headers});
   }
 
   deleteContact(contact: Contact){
-    const id = contact._id;
-    return this.http.delete('/api/contacts/delete'+id, {headers:this.headers});
+    return this.http.post('/api/contacts/delete/'+contact._id, {headers:this.headers});
   }
 }

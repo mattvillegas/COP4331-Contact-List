@@ -50,11 +50,11 @@
             </thead>
             <tbody>
               <tr>
-                 <!-- <tr *ngFor="let contact of hack(contactlist) | filter:inputString; let i = index">
+                 <tr *ngFor="let contact of contactlist | filter:inputString; let i = index">
                   <td>{{contact.name}}</td>
                   <td>{{contact.phone}}</td>
                   <td>{{contact.email}}</td>
-                  <td>{{contact.address}}</td> -->
+                  <td>{{contact.address}}</td>
                   <td>
                       <button class="close" aria-label="Close"(click)="onDeleteButton(contact)"><span aria-hidden="true">&times;</span></button>&nbsp;
                       <button class="btn btn-info" (click)="onEditButton(contact)" >Edit</button>

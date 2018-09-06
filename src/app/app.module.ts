@@ -12,6 +12,8 @@ import { DashComponent } from './dash/dash.component';
 
 import {AuthService} from './services/auth.service'
 import { ValidateService } from './services/validate.service';
+import { FilterPipe } from './services/filter.pipe';
+
 
 const appRoutes: Routes =[
   { path:'', component: HomeComponent },
@@ -25,7 +27,8 @@ const appRoutes: Routes =[
     AppComponent,
     HomeComponent,
     RegisterComponent,
-    DashComponent
+    DashComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

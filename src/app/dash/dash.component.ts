@@ -13,7 +13,7 @@ export class DashComponent implements OnInit {
   user_id: String;
 
   contact:Contact;
-  contactlist:Contact[];
+  contactlist: any;
 
   _id: string = null;
   name: string;
@@ -21,6 +21,8 @@ export class DashComponent implements OnInit {
   email: string;
   address: string;
   CreatedByUserID: string;
+
+  inputString: string;
 
   constructor(private router: Router, public authService:AuthService) { }
 
@@ -30,7 +32,17 @@ export class DashComponent implements OnInit {
       var temp = sessionStorage.getItem('user');
       this.user = JSON.parse(temp);
       this.user_id = this.user['id'];
+      this.getContactList();
     }
+
+  clearFields(){
+    this._id = undefined;
+    this.name = undefined;
+    this.phone = undefined;
+    this.email = undefined;
+    this.address = undefined;
+    this.CreatedByUserID = undefined;
+  }
 
   onAddButton(){
       const new_contact = {
@@ -39,7 +51,7 @@ export class DashComponent implements OnInit {
         phone: this.phone,
         email: this.email,
         address: this.address,
-        CreatedByUserID: this.user_id
+        CreatedByUserID: this.user["id"]
       }
       if(new_contact._id == null){
         this.AddContact(new_contact);
@@ -51,11 +63,40 @@ export class DashComponent implements OnInit {
   }
 
   AddContact(NewContact){
+    this.authService.addContact(NewContact).subscribe(data=>{
+      this.clearFields();
+    }, err=>{
+      alert('Failed to add a contact!'+err);
+    });
+    this.getContactList();
 
   }
 
   EditContact(OldContact){
 
   }
+
+  getContactList(){
+    this.authService.getContacts().subscribe(data =>{
+    this.contactlist = data;
+    })
+  }
+
+  onDeleteButton(contact){
+    this.authService.deleteContact(contact).subscribe(data=>{
+    this.contactlist.splice(this.contactlist.indexOf(contact),1);
+      // alert('Deleted a contact');
+    }, err =>{
+      alert('Failed to delete a contact!'+err);
+    });
+  }
+
+  search_contact(){
+    if(this.inputString == undefined){
+      // alert('Empty search!');
+      return false;
+    }
+  }
+
 
 }

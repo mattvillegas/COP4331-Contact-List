@@ -5486,12 +5486,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dash_dash_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dash/dash.component */ "./src/app/dash/dash.component.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
+/* harmony import */ var _services_filter_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/filter.pipe */ "./src/app/services/filter.pipe.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -5518,7 +5520,8 @@ var AppModule = /** @class */ (function () {
                 _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
                 _home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"],
                 _register_register_component__WEBPACK_IMPORTED_MODULE_7__["RegisterComponent"],
-                _dash_dash_component__WEBPACK_IMPORTED_MODULE_8__["DashComponent"]
+                _dash_dash_component__WEBPACK_IMPORTED_MODULE_8__["DashComponent"],
+                _services_filter_pipe__WEBPACK_IMPORTED_MODULE_11__["FilterPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -5555,7 +5558,7 @@ module.exports = "\nhtml{\n  background-color:  #779ECB;\n}\nbody {\n  margin: 0
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html style=\"background-color:#779ECB;\" >\n<body>\n\n    <div id=\"dash\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n    </div>\n\n        <div class=\"container\" id=\"cont\">\n          <div class=\"row\">\n            <h2>Welcome {{user.fname}}, add or search for a contact below.</h2>\n          </div>\n          <div class=\"row\">\n            <table class=\"table table-hover\">\n              <tbody>\n                <td>\n                  <div class=\"form-group\">\n                      <input placeholder=\"Enter Name\" type=\"text\" name=\"inputString\" [(ngModel)] = \"inputString\" class=\"form-control\">\n                  </div>\n                </td>\n                <td><button class=\"btn btn-success\" (click)=\"search_contact()\">Search</button></td>\n              </tbody>\n            </table>\n          </div>\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <table class=\"table\">\n              <tbody>\n                <tr><h3>Add a contact</h3></tr>\n                <tr><input placeholder=\"Enter First Name\" type=\"text\" name=\"inputString\" [(ngModel)] = \"name\" class=\"form-control\"></tr>\n                <tr><input placeholder=\"Enter Phone #\" type=\"text\" name=\"inputString\" [(ngModel)] = \"phone\" class=\"form-control\"></tr>\n                <tr><input placeholder=\"Enter Email\" type=\"text\" name=\"inputString\" [(ngModel)] = \"email\" class=\"form-control\"></tr>\n                <tr><input placeholder=\"Enter Address\" type=\"text\" name=\"inputString\" [(ngModel)] = \"address\" class=\"form-control\"></tr>\n                <tr><button class=\"btn btn-success\" (click)=\"onAddButton()\">Add</button></tr>\n              </tbody>\n            </table>\n          </div>\n        <div class=\"col-md-9\">\n          <h3>Contacts:</h3>\n          <table class=\"table table-hover\">\n            <thead>\n              <tr>\n                <th><h6><strong>Name</strong></h6></th>\n                <th><h6><strong>Phone</strong></h6></th>\n                <th><h6><strong>Email</strong></h6></th>\n                <th><h6><strong>Address</strong></h6></th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                 <!-- <tr *ngFor=\"let contact of hack(contactlist) | filter:inputString; let i = index\">\n                  <td>{{contact.name}}</td>\n                  <td>{{contact.phone}}</td>\n                  <td>{{contact.email}}</td>\n                  <td>{{contact.address}}</td> -->\n                  <td>\n                      <button class=\"close\" aria-label=\"Close\"(click)=\"onDeleteButton(contact)\"><span aria-hidden=\"true\">&times;</span></button>&nbsp;\n                      <button class=\"btn btn-info\" (click)=\"onEditButton(contact)\" >Edit</button>\n                  </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n      </div>\n</body>\n\n\n</html>\n"
+module.exports = "<html style=\"background-color:#779ECB;\" >\n<body>\n\n    <div id=\"dash\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n    </div>\n\n        <div class=\"container\" id=\"cont\">\n          <div class=\"row\">\n            <h2>Welcome {{user.fname}}, add or search for a contact below.</h2>\n          </div>\n          <div class=\"row\">\n            <table class=\"table table-hover\">\n              <tbody>\n                <td>\n                  <div class=\"form-group\">\n                      <input placeholder=\"Enter Name\" type=\"text\" name=\"inputString\" [(ngModel)] = \"inputString\" class=\"form-control\">\n                  </div>\n                </td>\n                <td><button class=\"btn btn-success\" (click)=\"search_contact()\">Search</button></td>\n              </tbody>\n            </table>\n          </div>\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <table class=\"table\">\n              <tbody>\n                <tr><h3>Add a contact</h3></tr>\n                <tr><input placeholder=\"Enter First Name\" type=\"text\" name=\"inputString\" [(ngModel)] = \"name\" class=\"form-control\"></tr>\n                <tr><input placeholder=\"Enter Phone #\" type=\"text\" name=\"inputString\" [(ngModel)] = \"phone\" class=\"form-control\"></tr>\n                <tr><input placeholder=\"Enter Email\" type=\"text\" name=\"inputString\" [(ngModel)] = \"email\" class=\"form-control\"></tr>\n                <tr><input placeholder=\"Enter Address\" type=\"text\" name=\"inputString\" [(ngModel)] = \"address\" class=\"form-control\"></tr>\n                <tr><button class=\"btn btn-success\" (click)=\"onAddButton()\">Add</button></tr>\n              </tbody>\n            </table>\n          </div>\n        <div class=\"col-md-9\">\n          <h3>Contacts:</h3>\n          <table class=\"table table-hover\">\n            <thead>\n              <tr>\n                <th><h6><strong>Name</strong></h6></th>\n                <th><h6><strong>Phone</strong></h6></th>\n                <th><h6><strong>Email</strong></h6></th>\n                <th><h6><strong>Address</strong></h6></th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                 <tr *ngFor=\"let contact of contactlist | filter:inputString; let i = index\">\n                  <td>{{contact.name}}</td>\n                  <td>{{contact.phone}}</td>\n                  <td>{{contact.email}}</td>\n                  <td>{{contact.address}}</td>\n                  <td>\n                      <button class=\"close\" aria-label=\"Close\"(click)=\"onDeleteButton(contact)\"><span aria-hidden=\"true\">&times;</span></button>&nbsp;\n                      <button class=\"btn btn-info\" (click)=\"onEditButton(contact)\" >Edit</button>\n                  </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n      </div>\n</body>\n\n\n</html>\n"
 
 /***/ }),
 
@@ -5596,6 +5599,15 @@ var DashComponent = /** @class */ (function () {
         var temp = sessionStorage.getItem('user');
         this.user = JSON.parse(temp);
         this.user_id = this.user['id'];
+        this.getContactList();
+    };
+    DashComponent.prototype.clearFields = function () {
+        this._id = undefined;
+        this.name = undefined;
+        this.phone = undefined;
+        this.email = undefined;
+        this.address = undefined;
+        this.CreatedByUserID = undefined;
     };
     DashComponent.prototype.onAddButton = function () {
         var new_contact = {
@@ -5604,7 +5616,7 @@ var DashComponent = /** @class */ (function () {
             phone: this.phone,
             email: this.email,
             address: this.address,
-            CreatedByUserID: this.user_id
+            CreatedByUserID: this.user["id"]
         };
         if (new_contact._id == null) {
             this.AddContact(new_contact);
@@ -5616,8 +5628,36 @@ var DashComponent = /** @class */ (function () {
         }
     };
     DashComponent.prototype.AddContact = function (NewContact) {
+        var _this = this;
+        this.authService.addContact(NewContact).subscribe(function (data) {
+            _this.clearFields();
+        }, function (err) {
+            alert('Failed to add a contact!' + err);
+        });
+        this.getContactList();
     };
     DashComponent.prototype.EditContact = function (OldContact) {
+    };
+    DashComponent.prototype.getContactList = function () {
+        var _this = this;
+        this.authService.getContacts().subscribe(function (data) {
+            _this.contactlist = data;
+        });
+    };
+    DashComponent.prototype.onDeleteButton = function (contact) {
+        var _this = this;
+        this.authService.deleteContact(contact).subscribe(function (data) {
+            _this.contactlist.splice(_this.contactlist.indexOf(contact), 1);
+            // alert('Deleted a contact');
+        }, function (err) {
+            alert('Failed to delete a contact!' + err);
+        });
+    };
+    DashComponent.prototype.search_contact = function () {
+        if (this.inputString == undefined) {
+            // alert('Empty search!');
+            return false;
+        }
     };
     DashComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5889,15 +5929,17 @@ var AuthService = /** @class */ (function () {
         return this.http.post('/api/users/login', user, { headers: this.headers });
     };
     // Endpoints for interacting with Contacts
-    AuthService.prototype.addContact = function (user, contact) {
-        return this.http.post('/api/contacts/create/:' + this.user._id, contact, { headers: this.headers });
+    AuthService.prototype.getContacts = function () {
+        return this.http.get('/api/contacts/' + this.user.id, { headers: this.headers });
+    };
+    AuthService.prototype.addContact = function (contact) {
+        return this.http.post('/api/contacts/create/' + this.user.id, contact, { headers: this.headers });
     };
     AuthService.prototype.updateContact = function (contact) {
-        return this.http.put('/api/contacts/update/:' + this.user._id, contact, { headers: this.headers });
+        return this.http.put('/api/contacts/update/' + this.user.id, contact, { headers: this.headers });
     };
     AuthService.prototype.deleteContact = function (contact) {
-        var id = contact._id;
-        return this.http.delete('/api/contacts/delete' + id, { headers: this.headers });
+        return this.http.post('/api/contacts/delete/' + contact._id, { headers: this.headers });
     };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -5906,6 +5948,49 @@ var AuthService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], AuthService);
     return AuthService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/filter.pipe.ts":
+/*!*****************************************!*\
+  !*** ./src/app/services/filter.pipe.ts ***!
+  \*****************************************/
+/*! exports provided: FilterPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilterPipe", function() { return FilterPipe; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var FilterPipe = /** @class */ (function () {
+    function FilterPipe() {
+    }
+    FilterPipe.prototype.transform = function (contactlist, inputString) {
+        // Check if the search inputString is empty/undefined
+        if (inputString === undefined) {
+            return contactlist;
+        }
+        // If there is input string to search:
+        return contactlist.filter(function (retVal) {
+            return retVal.firstName.toLowerCase().includes(inputString.toLowerCase());
+        });
+    };
+    FilterPipe = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
+            name: 'filter'
+        })
+    ], FilterPipe);
+    return FilterPipe;
 }());
 
 
