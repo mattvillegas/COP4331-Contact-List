@@ -71,6 +71,11 @@ pageLoad(){
         }
       }
   }
+  
+  onLogOutButton(){
+    sessionStorage.clear();
+    this.router.navigate(['/home']);
+  }
 
   AddContact(NewContact){
     this.authService.addContact(NewContact).subscribe(data=>{
