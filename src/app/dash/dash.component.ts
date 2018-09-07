@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Route } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Contact } from '../services/contact';
+import { FilterPipe} from '../services/filter.pipe';
+
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
@@ -75,9 +77,9 @@ export class DashComponent implements OnInit {
 
   EditContact(OldContact){
     this.authService.updateContact(OldContact).subscribe(data=>{
-      this.clearFields();
+    this.clearFields();
     }, err=>{
-      alert('Failed to update a contact!'+err);
+      alert('Failed to update a contact!');
     });
     this.getContactList();
   }

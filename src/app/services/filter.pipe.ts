@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(contactlist: any, inputString: any): any {
+  transform(contactlist: any, inputString: string): any {
     // Check if the search inputString is empty/undefined
     if(inputString === undefined){
       return contactlist;
@@ -13,7 +13,7 @@ export class FilterPipe implements PipeTransform {
     // If there is input string to search:
     return contactlist.filter(function(retVal){
       return retVal.firstName.toLowerCase().includes(inputString.toLowerCase());
-    }); 
+    });
   }
 
 }
