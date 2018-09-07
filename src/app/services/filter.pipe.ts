@@ -12,7 +12,7 @@ export class FilterPipe implements PipeTransform {
     }
     // If there is input string to search:
     return contactlist.filter(function(retVal){
-      return retVal.firstName.toLowerCase().includes(inputString.toLowerCase());
+      return retVal.name.toLowerCase().includes(inputString.toLowerCase());
     });
   }
 

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Route } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Contact } from '../services/contact';
-import { FilterPipe} from '../services/filter.pipe';
 
 @Component({
   selector: 'app-dash',
@@ -10,6 +9,8 @@ import { FilterPipe} from '../services/filter.pipe';
   styleUrls: ['./dash.component.css']
 })
 export class DashComponent implements OnInit {
+
+  inputString: string;
 
   user : Object;
   user_id: String;
@@ -24,7 +25,7 @@ export class DashComponent implements OnInit {
   address: string;
   CreatedByUserID: string;
 
-  inputString: string;
+
 
   constructor(private router: Router, public authService:AuthService) { }
 
@@ -77,11 +78,11 @@ export class DashComponent implements OnInit {
 
   EditContact(OldContact){
     this.authService.updateContact(OldContact).subscribe(data=>{
-    this.clearFields();
+      this.clearFields();
+	  this.getContactList();
     }, err=>{
       alert('Failed to update a contact!');
     });
-    this.getContactList();
   }
 
   onEditButton(currentContact){
@@ -101,7 +102,7 @@ export class DashComponent implements OnInit {
 
   onDeleteButton(contact){
     this.authService.deleteContact(contact).subscribe(data=>{
-    this.contactlist.splice(this.contactlist.indexOf(contact),1);
+    this.contactlist.splice(this.contactlist.indexOf(contact),1)
       // alert('Deleted a contact');
     }, err =>{
       alert('Failed to delete a contact!'+err);
