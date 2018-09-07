@@ -25,21 +25,26 @@ export class DashComponent implements OnInit {
   address: string;
   CreatedByUserID: string;
 
+  addTitle:string = "Add a Contact";
 
 
   constructor(private router: Router, public authService:AuthService) { }
 
   ngOnInit() {
-      if (sessionStorage.length == 0){
-      this.router.navigate(['/home']);
-    }
-      var temp = sessionStorage.getItem('user');
-      this.user = JSON.parse(temp);
-      this.user_id = this.user['id'];
-      this.getContactList();
+      this.pageLoad();
     }
 
+pageLoad(){
+  if (sessionStorage.length == 0){
+  this.router.navigate(['/home']);
+}
+  var temp = sessionStorage.getItem('user');
+  this.user = JSON.parse(temp);
+  this.user_id = this.user['id'];
+  this.getContactList();
+}
   clearFields(){
+    this.addTitle = "Add a Contact";
     this._id = undefined;
     this.name = undefined;
     this.phone = undefined;
@@ -49,6 +54,7 @@ export class DashComponent implements OnInit {
   }
 
   onAddButton(){
+      this.addTitle = "Add a Contact";
       const new_contact = {
         _id: this._id,
         name: this.name,
@@ -70,7 +76,7 @@ export class DashComponent implements OnInit {
     this.authService.addContact(NewContact).subscribe(data=>{
       this.clearFields();
     }, err=>{
-      alert('Failed to add a contact!'+err);
+      alert('Failed to add a contact!');
     });
     this.getContactList();
 
@@ -86,6 +92,7 @@ export class DashComponent implements OnInit {
   }
 
   onEditButton(currentContact){
+    this.addTitle = "Edit";
     this._id = currentContact._id;
     this.name = currentContact.name;
     this.phone = currentContact.phone;
@@ -103,9 +110,10 @@ export class DashComponent implements OnInit {
   onDeleteButton(contact){
     this.authService.deleteContact(contact).subscribe(data=>{
     this.contactlist.splice(this.contactlist.indexOf(contact),1)
+    this.authService.getContacts();
       // alert('Deleted a contact');
     }, err =>{
-      alert('Failed to delete a contact!'+err);
+      alert('Failed to delete a contact!');
     });
   }
 

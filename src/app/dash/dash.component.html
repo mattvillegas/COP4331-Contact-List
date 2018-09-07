@@ -17,13 +17,13 @@
           <div class="col-md-3">
             <table class="table">
               <tbody>
-                <tr><h3 class="text-center">Add a contact</h3></tr>
+                <tr><h3 class="text-center" id="addtitle">{{addTitle}}</h3></tr>
                 <tr><input placeholder="Enter Name" type="text" name="name" [(ngModel)] = "name" class="form-control" style="margin: 5px;"></tr>
                 <tr><input placeholder="Enter Phone #" type="text" name="phone" [(ngModel)] = "phone" class="form-control" style="margin: 5px;"></tr>
                 <tr><input placeholder="Enter Email" type="text" name="email" [(ngModel)] = "email" class="form-control" style="margin: 5px;"></tr>
                 <tr><input placeholder="Enter Address" type="text" name="address" [(ngModel)] = "address" class="form-control" style="margin: 5px;"></tr>
-                <tr><button class="btn btn-success" (click)="onAddButton()" style="background-color:#779ECB; border-color:#779ECB; margin-top:10px; margin-left: 5px;  ">Add</button></tr>
-                <td><button class="btn btn-success" (click)="clearFields()" style="background-color:red; border-color:#779ECB; margin-top:10px; margin-left: 5px;  ">clear</button></td>
+                <tr><button class="btn btn-success" (click)="onAddButton()" style="background-color:#779ECB; border-color:#779ECB; margin-top:10px; margin-left: 5px;  ">Submit</button><button class="btn btn-success" (click)="clearFields()" style="background-color:grey; border-color:#779ECB; margin-top:10px; margin-left: 5px;  ">Clear</button></tr>
+
               </tbody>
             </table>
           </div>
