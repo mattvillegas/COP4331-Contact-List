@@ -128,12 +128,14 @@ pageLoad(){
 	  if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(pos) {
 			var crd = pos.coords;
-			address = address.replace(" ", "+");
+			//address = address.replace(" ", "+");
 			var baseURL = 'https://www.google.com/maps/dir/?api=1&origin=';
 			var userLoc = crd.latitude + ',' + crd.longitude;
-			var destURL = '&destination=' + address + '&travelmode=driving';
+			var contactAddress = encodeURIComponent(address)
+			var destURL = '&destination=' + contactAddress + '&travelmode=driving';
 			var finalUrl = baseURL + userLoc + destURL;
 			//var finalUrl = encodeURIComponent(baseURL + userLoc + destURL);
+			alert(finalUrl)
 			window.open(finalUrl, "_blank");
 
 
