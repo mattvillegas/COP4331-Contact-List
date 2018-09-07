@@ -27,8 +27,9 @@ export class DashComponent implements OnInit {
   constructor(private router: Router, public authService:AuthService) { }
 
   ngOnInit() {
-    //if (sessionStorage.length == 0){
-      //this.router.navigate(['/home']);
+      if (sessionStorage.length == 0){
+      this.router.navigate(['/home']);
+    }
       var temp = sessionStorage.getItem('user');
       this.user = JSON.parse(temp);
       this.user_id = this.user['id'];
@@ -98,5 +99,15 @@ export class DashComponent implements OnInit {
     }
   }
 
+  onMapsButton(address){
+	  //String baseURL = 'https://www.google.com/maps/dir/?api=1&origin=';
+	  //String userLoc = '';
+	  //String destURL = '&destination=' + address + '&travelmode=driving';
+
+	  // do stuff
+
+	  //String finalURL = baseURL + userLoc + destURL;
+	  alert(address);
+  }
 
 }
