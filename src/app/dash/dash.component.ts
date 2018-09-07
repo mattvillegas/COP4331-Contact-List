@@ -74,7 +74,21 @@ export class DashComponent implements OnInit {
   }
 
   EditContact(OldContact){
+    this.authService.updateContact(OldContact).subscribe(data=>{
+      this.clearFields();
+    }, err=>{
+      alert('Failed to update a contact!'+err);
+    });
+    this.getContactList();
+  }
 
+  onEditButton(currentContact){
+    this._id = currentContact._id;
+    this.name = currentContact.name;
+    this.phone = currentContact.phone;
+    this.email = currentContact.email;
+    this.address = currentContact.address;
+    this.CreatedByUserID = currentContact.CreatedByUserID;
   }
 
   getContactList(){

@@ -206,6 +206,7 @@ app.post("/api/contacts/search/:id", function(req, res){
 });
 
 app.post("/api/contacts/update/:id", function(req, res){
+	console.log(req.body);
 	Contact.findOneAndUpdate(req.params.id, req.body, {new: true}, function(err, model) {
 		if(err) {
 			handleError(res, "Error updating", "Error updating contact");

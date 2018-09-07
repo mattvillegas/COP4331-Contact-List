@@ -39,7 +39,8 @@ export class AuthService {
   }
 
   updateContact(contact: Contact){
-    return this.http.put('/api/contacts/update/'+this.user.id, contact, {headers:this.headers});
+    console.log(contact);
+    return this.http.post('/api/contacts/update/'+contact._id, contact, {headers:this.headers});
   }
 
   deleteContact(contact: Contact){
