@@ -70,7 +70,7 @@ export class DashComponent implements OnInit {
     this.authService.addContact(NewContact).subscribe(data=>{
       this.clearFields();
     }, err=>{
-      alert('Failed to add a contact!'+err);
+      alert('Failed to add a contact!');
     });
     this.getContactList();
 
@@ -103,9 +103,10 @@ export class DashComponent implements OnInit {
   onDeleteButton(contact){
     this.authService.deleteContact(contact).subscribe(data=>{
     this.contactlist.splice(this.contactlist.indexOf(contact),1)
+    this.authService.getContacts();
       // alert('Deleted a contact');
     }, err =>{
-      alert('Failed to delete a contact!'+err);
+      alert('Failed to delete a contact!');
     });
   }
 

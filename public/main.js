@@ -5633,7 +5633,7 @@ var DashComponent = /** @class */ (function () {
         this.authService.addContact(NewContact).subscribe(function (data) {
             _this.clearFields();
         }, function (err) {
-            alert('Failed to add a contact!' + err);
+            alert('Failed to add a contact!');
         });
         this.getContactList();
     };
@@ -5664,9 +5664,10 @@ var DashComponent = /** @class */ (function () {
         var _this = this;
         this.authService.deleteContact(contact).subscribe(function (data) {
             _this.contactlist.splice(_this.contactlist.indexOf(contact), 1);
+            _this.authService.getContacts();
             // alert('Deleted a contact');
         }, function (err) {
-            alert('Failed to delete a contact!' + err);
+            alert('Failed to delete a contact!');
         });
     };
     DashComponent.prototype.search_contact = function () {
