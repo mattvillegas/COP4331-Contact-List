@@ -10,7 +10,7 @@
 
         <div class="container" id="cont">
           <div class="row" style=" padding-top: 10px; margin: 10px; ">
-            <h2>Welcome {{user.fname}}, add or search for a contact below.</h2>
+            <h2 style="color:#779ECB;">Welcome {{user.fname}}, add or search for a contact below.</h2>
             <button class="btn btn-success" (click)="onLogOutButton()" style="background-color:#779ECB; border-color:#779ECB;margin-left: 25%;">Log Out</button>
           </div>
 
@@ -18,17 +18,17 @@
           <div class="col-md-3">
             <table class="table">
               <tbody>
-                <tr><h3 class="text-center" id="addtitle">{{addTitle}}</h3></tr>
+                <tr><h3 class="text-center" id="addtitle" style="color:#779ECB;">{{addTitle}}</h3></tr>
                 <tr><input placeholder="Enter Name" type="text" name="name" [(ngModel)] = "name" class="form-control" style="margin: 5px;"></tr>
                 <tr><input placeholder="Enter Phone #" type="text" name="phone" [(ngModel)] = "phone" class="form-control" style="margin: 5px;"></tr>
                 <tr><input placeholder="Enter Email" type="text" name="email" [(ngModel)] = "email" class="form-control" style="margin: 5px;"></tr>
                 <tr><input placeholder="Enter Address" type="text" name="address" [(ngModel)] = "address" class="form-control" style="margin: 5px;"></tr>
-                <tr><button class="btn btn-success" (click)="onAddButton()" style="background-color:#779ECB; border-color:#779ECB; margin-top:10px; margin-left: 5px;  ">Submit</button><button class="btn btn-success" (click)="clearFields()" style="background-color:grey; border-color:#779ECB; margin-top:10px; margin-left: 5px;  ">Clear</button></tr>
+                <tr><button class="btn btn-success" (click)="onAddButton()" style="background-color:#779ECB; border-color:#779ECB; margin-top:10px; margin-left: 5px;  ">Submit</button><button class="btn btn-success" (click)="clearFields()" style="background-color:#c23b22; border-color:#c23b22; margin-top:10px; margin-left: 5px;  ">Clear</button></tr>
               </tbody>
             </table>
           </div>
         <div class="col-md-9">
-          <h3 style="margin-left: 13px;">Contacts:</h3>
+          <h3 style="margin-left: 13px; color:#779ECB;">Contacts:</h3>
           <table class="table table-hover">
             <tbody>
               <td>
@@ -41,11 +41,14 @@
           </table>
           <table class="table table-striped">
             <thead class="thead-dark">
-              <tr>
+              <tr style="  box-shadow: 0px 0px 20px grey;">
                 <th><h6><strong>Name</strong></h6></th>
                 <th><h6><strong>Phone</strong></h6></th>
                 <th><h6><strong>Email</strong></h6></th>
                 <th><h6><strong>Address</strong></h6></th>
+                <th><h6><strong></strong></h6></th>
+				<th><h6><strong></strong></h6></th>
+
               </tr>
             </thead>
             <tbody>
