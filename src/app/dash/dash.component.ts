@@ -71,6 +71,11 @@ pageLoad(){
         }
       }
   }
+  
+  onLogOutButton(){
+    sessionStorage.clear();
+    this.router.navigate(['/home']);
+  }
 
   AddContact(NewContact){
     this.authService.addContact(NewContact).subscribe(data=>{
@@ -79,6 +84,7 @@ pageLoad(){
       alert('Failed to add a contact!');
     });
     this.getContactList();
+    this.getContactList();
 
   }
 
@@ -86,6 +92,7 @@ pageLoad(){
     this.authService.updateContact(OldContact).subscribe(data=>{
       this.clearFields();
 	  this.getContactList();
+    this.getContactList();
     }, err=>{
       alert('Failed to update a contact!');
     });
@@ -110,7 +117,8 @@ pageLoad(){
   onDeleteButton(contact){
     this.authService.deleteContact(contact).subscribe(data=>{
     this.contactlist.splice(this.contactlist.indexOf(contact),1)
-    this.authService.getContacts();
+    this.getContactList();
+    this.getContactList();
       // alert('Deleted a contact');
     }, err =>{
       alert('Failed to delete a contact!');
@@ -161,9 +169,9 @@ pageLoad(){
 	 alert("ERROR");
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
-  
+
   onVcfButton(contact){
-	  
+
 	  alert(contact)
   }
 
