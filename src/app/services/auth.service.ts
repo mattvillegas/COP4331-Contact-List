@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Contact } from './contact'
 @Injectable({
   providedIn: 'root'
 })
@@ -26,5 +27,23 @@ export class AuthService {
 
   loginUser(user){
     return this.http.post('/api/users/login', user, {headers:this.headers});
+  }
+
+  // Endpoints for interacting with Contacts
+  getContacts(){
+  return this.http.get('/api/contacts/'+this.user.id, {headers:this.headers});
+}
+
+  addContact(contact: Contact){
+    return this.http.post('/api/contacts/create/'+this.user.id, contact, {headers:this.headers});
+  }
+
+  updateContact(contact: Contact){
+    console.log(contact);
+    return this.http.post('/api/contacts/update/'+contact._id, contact, {headers:this.headers});
+  }
+
+  deleteContact(contact: Contact){
+    return this.http.post('/api/contacts/delete/'+contact._id, {headers:this.headers});
   }
 }

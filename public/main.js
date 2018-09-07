@@ -5485,12 +5485,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
 /* harmony import */ var _dash_dash_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./dash/dash.component */ "./src/app/dash/dash.component.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
+/* harmony import */ var _services_filter_pipe__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/filter.pipe */ "./src/app/services/filter.pipe.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -5516,7 +5520,8 @@ var AppModule = /** @class */ (function () {
                 _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
                 _home_home_component__WEBPACK_IMPORTED_MODULE_6__["HomeComponent"],
                 _register_register_component__WEBPACK_IMPORTED_MODULE_7__["RegisterComponent"],
-                _dash_dash_component__WEBPACK_IMPORTED_MODULE_8__["DashComponent"]
+                _dash_dash_component__WEBPACK_IMPORTED_MODULE_8__["DashComponent"],
+                _services_filter_pipe__WEBPACK_IMPORTED_MODULE_11__["FilterPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -5524,7 +5529,7 @@ var AppModule = /** @class */ (function () {
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(appRoutes)
             ],
-            providers: [_services_auth_service__WEBPACK_IMPORTED_MODULE_9__["AuthService"]],
+            providers: [_services_auth_service__WEBPACK_IMPORTED_MODULE_9__["AuthService"], _services_validate_service__WEBPACK_IMPORTED_MODULE_10__["ValidateService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
         })
     ], AppModule);
@@ -5542,7 +5547,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\nhtml{\n  background-color:  #779ECB;\n}\nbody {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#dash .container  {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 500px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#dash .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#dash .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n#dash .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#dash .text-info {\n  color: #779ECB!important;\n}\n"
+module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#dash .container  {\n  margin-top: 30px;\n\n  height: 500px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#dash .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#dash .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n#dash .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#dash .btn-succes {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#dash .text-info {\n  color: #779ECB!important;\n}\n#cont {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  background-color:  #EAEAEA;\n  box-shadow: 0px 0px 20px grey;\n}\n.alignRight{\n  text-align: right;\n}\n"
 
 /***/ }),
 
@@ -5553,7 +5558,7 @@ module.exports = "\nhtml{\n  background-color:  #779ECB;\n}\nbody {\n  margin: 0
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html style=\"background-color:#779ECB;\" >\n<body>\n\n    <div id=\"dash\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n        <div class=\"container\">\n            \n        </div>\n    </div>\n</body>\n\n\n</html>\n"
+module.exports = "<html style=\"background-color:#779ECB;\"  >\n<body>\n\n    <div id=\"dash\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\" style=\"margin-bottom: 30px;\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n    </div>\n\n        <div class=\"container\" id=\"cont\">\n          <div class=\"row\" style=\" padding-top: 10px; margin: 10px; \">\n            <h2>Welcome {{user.fname}}, add or search for a contact below.</h2>\n          </div>\n\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <table class=\"table\">\n              <tbody>\n                <tr><h3 class=\"text-center\">Add a contact</h3></tr>\n                <tr><input placeholder=\"Enter Name\" type=\"text\" name=\"name\" [(ngModel)] = \"name\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Phone #\" type=\"text\" name=\"phone\" [(ngModel)] = \"phone\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Email\" type=\"text\" name=\"email\" [(ngModel)] = \"email\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Address\" type=\"text\" name=\"address\" [(ngModel)] = \"address\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><button class=\"btn btn-success\" (click)=\"onAddButton()\" style=\"background-color:#779ECB; border-color:#779ECB; margin-top:10px; margin-left: 5px;  \">Add</button></tr>\n                <td><button class=\"btn btn-success\" (click)=\"clearFields()\" style=\"background-color:red; border-color:#779ECB; margin-top:10px; margin-left: 5px;  \">clear</button></td>\n              </tbody>\n            </table>\n          </div>\n        <div class=\"col-md-9\">\n          <h3>Contacts:</h3>\n          <table class=\"table table-hover\">\n            <tbody>\n              <td>\n                <div class=\"form-group\">\n                    <input placeholder=\"Enter Name\" name=\"inputString\" [(ngModel)] = \"inputString\" class=\"form-control\">\n                </div>\n              </td>\n              <td><button class=\"btn btn-success\" (click)=\"search_contact()\" style=\"background-color:#779ECB; border-color:#779ECB;  \">Search</button></td>\n            </tbody>\n          </table>\n          <table class=\"table table-hover\">\n            <thead>\n              <tr>\n                <th><h6><strong>Name</strong></h6></th>\n                <th><h6><strong>Phone</strong></h6></th>\n                <th><h6><strong>Email</strong></h6></th>\n                <th><h6><strong>Address</strong></h6></th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                 <tr *ngFor=\"let contact of contactlist | filter : inputString;\">\n                  <td>{{contact.name}}</td>\n                  <td>{{contact.phone}}</td>\n                  <td>{{contact.email}}</td>\n                  <td>{{contact.address}}</td>\n                  <td>\n                      <button class=\"close\" aria-label=\"Close\"(click)=\"onDeleteButton(contact)\"><span aria-hidden=\"true\">&times;</span></button>&nbsp;\n\t\t\t\t\t            <button class=\"btn btn-info\" (click)=\"onMapsButton(contact.address)\" style=\"background-color:#779ECB; border-color:#779ECB;\">Open in Google Maps</button>\n                      <button class=\"btn btn-info\" (click)=\"onEditButton(contact)\" style=\"background-color:#779ECB; border-color:#779ECB;  \">Edit</button>\n                  </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n      </div>\n</body>\n\n\n</html>\n"
 
 /***/ }),
 
@@ -5569,6 +5574,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashComponent", function() { return DashComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5580,14 +5586,123 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var DashComponent = /** @class */ (function () {
-    function DashComponent(router) {
+    function DashComponent(router, authService) {
         this.router = router;
+        this.authService = authService;
+        this._id = null;
     }
     DashComponent.prototype.ngOnInit = function () {
         if (sessionStorage.length == 0) {
             this.router.navigate(['/home']);
         }
+        var temp = sessionStorage.getItem('user');
+        this.user = JSON.parse(temp);
+        this.user_id = this.user['id'];
+        this.getContactList();
+    };
+    DashComponent.prototype.clearFields = function () {
+        this._id = undefined;
+        this.name = undefined;
+        this.phone = undefined;
+        this.email = undefined;
+        this.address = undefined;
+        this.CreatedByUserID = undefined;
+    };
+    DashComponent.prototype.onAddButton = function () {
+        var new_contact = {
+            _id: this._id,
+            name: this.name,
+            phone: this.phone,
+            email: this.email,
+            address: this.address,
+            CreatedByUserID: this.user["id"]
+        };
+        if (new_contact._id == null) {
+            this.AddContact(new_contact);
+        }
+        else {
+            if (new_contact._id != null) {
+                this.EditContact(new_contact);
+            }
+        }
+    };
+    DashComponent.prototype.AddContact = function (NewContact) {
+        var _this = this;
+        this.authService.addContact(NewContact).subscribe(function (data) {
+            _this.clearFields();
+        }, function (err) {
+            alert('Failed to add a contact!' + err);
+        });
+        this.getContactList();
+    };
+    DashComponent.prototype.EditContact = function (OldContact) {
+        var _this = this;
+        this.authService.updateContact(OldContact).subscribe(function (data) {
+            _this.clearFields();
+            _this.getContactList();
+        }, function (err) {
+            alert('Failed to update a contact!');
+        });
+    };
+    DashComponent.prototype.onEditButton = function (currentContact) {
+        this._id = currentContact._id;
+        this.name = currentContact.name;
+        this.phone = currentContact.phone;
+        this.email = currentContact.email;
+        this.address = currentContact.address;
+        this.CreatedByUserID = currentContact.CreatedByUserID;
+    };
+    DashComponent.prototype.getContactList = function () {
+        var _this = this;
+        this.authService.getContacts().subscribe(function (data) {
+            _this.contactlist = data;
+        });
+    };
+    DashComponent.prototype.onDeleteButton = function (contact) {
+        var _this = this;
+        this.authService.deleteContact(contact).subscribe(function (data) {
+            _this.contactlist.splice(_this.contactlist.indexOf(contact), 1);
+            // alert('Deleted a contact');
+        }, function (err) {
+            alert('Failed to delete a contact!' + err);
+        });
+    };
+    DashComponent.prototype.search_contact = function () {
+        if (this.inputString == undefined) {
+            // alert('Empty search!');
+            return false;
+        }
+    };
+    DashComponent.prototype.onMapsButton = function (address) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                var crd = pos.coords;
+                address = address.replace(" ", "+");
+                var baseURL = 'https://www.google.com/maps/dir/?api=1&origin=';
+                var userLoc = crd.latitude + ',' + crd.longitude;
+                var destURL = '&destination=' + address + '&travelmode=driving';
+                var finalUrl = baseURL + userLoc + destURL;
+                //var finalUrl = encodeURIComponent(baseURL + userLoc + destURL);
+                window.open(finalUrl, "_blank");
+            }, this.error);
+        }
+        else {
+            //x.innerHTML = "Geolocation is not supported by this browser.";
+            alert("Geolocation not supported by this browser.");
+        }
+        //window.open('https://www.google.com','_blank');
+        //String baseURL = 'https://www.google.com/maps/dir/?api=1&origin=';
+        //String userLoc = '';
+        //String destURL = '&destination=' + address + '&travelmode=driving';
+        // do stuff
+        //String finalURL = baseURL + userLoc + destURL;
+        //alert(address);
+    };
+    DashComponent.prototype.error = function (err) {
+        alert("ERROR");
+        console.warn("ERROR(" + err.code + "): " + err.message);
     };
     DashComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5595,7 +5710,7 @@ var DashComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dash.component.html */ "./src/app/dash/dash.component.html"),
             styles: [__webpack_require__(/*! ./dash.component.css */ "./src/app/dash/dash.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], DashComponent);
     return DashComponent;
 }());
@@ -5611,7 +5726,7 @@ var DashComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "html{\n  background-color:  #779ECB;\n}\nbody {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#login .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 358px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#login .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#login .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n\n.ng-valid[required], .ng-valid.required\n    border-left: 5px solid #42A948;\n}\n#login .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#login .text-info {\n  color: #779ECB!important;\n}\n#passwordShow{\n  padding-top: 13px;\n  color: #779ECB;\n}\n"
+module.exports = "html {\n  background-color:  #779ECB;\n}\nbody {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#login .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 358px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#login .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#login .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n\n.ng-valid[required], .ng-valid.required\n    border-left: 5px solid #42A948;\n}\n#login .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#login .text-info {\n  color: #779ECB!important;\n}\n#passwordShow{\n  padding-top: 13px;\n  color: #779ECB;\n}\n"
 
 /***/ }),
 
@@ -5639,6 +5754,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/validate.service */ "./src/app/services/validate.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5651,10 +5767,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(router, authService) {
+    function HomeComponent(router, authService, validateService) {
         this.router = router;
         this.authService = authService;
+        this.validateService = validateService;
     }
     HomeComponent.prototype.ngOnInit = function () {
     };
@@ -5673,6 +5791,10 @@ var HomeComponent = /** @class */ (function () {
             email: this.email,
             password: this.password
         };
+        if (!this.validateService.validateLogin(user)) {
+            alert('Please fill in all fields!');
+            return false;
+        }
         this.authService.loginUser(user).subscribe(function (data) {
             if (data == 'Failed') {
                 alert('User not found, please try again');
@@ -5694,7 +5816,7 @@ var HomeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/home/home.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _services_validate_service__WEBPACK_IMPORTED_MODULE_3__["ValidateService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -5710,7 +5832,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "html{\n  background-color:  #779ECB;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n\n#register .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 525px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n\n#register .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n\n#register .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n\n#register .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n\n#register .text-info {\n  color: #779ECB!important;\n}\n\n#passwordShow{\n  padding-bottom: 10px;\n  color: #779ECB;\n}\n"
+module.exports = "html {\n  background-color:  #779ECB;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n\n#register .container #login-row #login-column #login-box {\n  margin-top: 30px;\n  max-width: 600px;\n  height: 525px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n\n#register .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n\n#register .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n\n#register .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n\n#register .text-info {\n  color: #779ECB!important;\n}\n\n#passwordShow{\n  padding-bottom: 10px;\n  color: #779ECB;\n}\n"
 
 /***/ }),
 
@@ -5738,6 +5860,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/validate.service */ "./src/app/services/validate.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5750,10 +5873,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var RegisterComponent = /** @class */ (function () {
-    function RegisterComponent(router, authService) {
+    function RegisterComponent(router, authService, validateService) {
         this.router = router;
         this.authService = authService;
+        this.validateService = validateService;
     }
     RegisterComponent.prototype.ngOnInit = function () {
     };
@@ -5774,6 +5899,14 @@ var RegisterComponent = /** @class */ (function () {
             email: this.email,
             password: this.password
         };
+        if (!this.validateService.validateRegister(user)) {
+            alert('Please fill in all fields');
+            return false;
+        }
+        if (!this.validateService.validateEmail(user.email)) {
+            alert('Please use a valid email');
+            return false;
+        }
         this.authService.registerUser(user).subscribe(function (data) {
             // this.showSuccess('You are registered and now can log in.');
             alert('You are registered and now can log in');
@@ -5790,7 +5923,7 @@ var RegisterComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./register.component.html */ "./src/app/register/register.component.html"),
             styles: [__webpack_require__(/*! ./register.component.css */ "./src/app/register/register.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _services_validate_service__WEBPACK_IMPORTED_MODULE_3__["ValidateService"]])
     ], RegisterComponent);
     return RegisterComponent;
 }());
@@ -5840,6 +5973,20 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.loginUser = function (user) {
         return this.http.post('/api/users/login', user, { headers: this.headers });
     };
+    // Endpoints for interacting with Contacts
+    AuthService.prototype.getContacts = function () {
+        return this.http.get('/api/contacts/' + this.user.id, { headers: this.headers });
+    };
+    AuthService.prototype.addContact = function (contact) {
+        return this.http.post('/api/contacts/create/' + this.user.id, contact, { headers: this.headers });
+    };
+    AuthService.prototype.updateContact = function (contact) {
+        console.log(contact);
+        return this.http.post('/api/contacts/update/' + contact._id, contact, { headers: this.headers });
+    };
+    AuthService.prototype.deleteContact = function (contact) {
+        return this.http.post('/api/contacts/delete/' + contact._id, { headers: this.headers });
+    };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
@@ -5847,6 +5994,104 @@ var AuthService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], AuthService);
     return AuthService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/filter.pipe.ts":
+/*!*****************************************!*\
+  !*** ./src/app/services/filter.pipe.ts ***!
+  \*****************************************/
+/*! exports provided: FilterPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilterPipe", function() { return FilterPipe; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var FilterPipe = /** @class */ (function () {
+    function FilterPipe() {
+    }
+    FilterPipe.prototype.transform = function (contactlist, inputString) {
+        // Check if the search inputString is empty/undefined
+        if (inputString === undefined) {
+            return contactlist;
+        }
+        // If there is input string to search:
+        return contactlist.filter(function (retVal) {
+            return retVal.name.toLowerCase().includes(inputString.toLowerCase());
+        });
+    };
+    FilterPipe = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Pipe"])({
+            name: 'filter'
+        })
+    ], FilterPipe);
+    return FilterPipe;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/validate.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/services/validate.service.ts ***!
+  \**********************************************/
+/*! exports provided: ValidateService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ValidateService", function() { return ValidateService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ValidateService = /** @class */ (function () {
+    function ValidateService() {
+    }
+    ValidateService.prototype.validateRegister = function (user) {
+        if (user.fname == undefined || user.email == undefined || user.lname == undefined || user.password == undefined) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    ValidateService.prototype.validateLogin = function (user) {
+        if (user.email == undefined || user.password == undefined) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    ValidateService.prototype.validateEmail = function (email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    };
+    ValidateService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], ValidateService);
+    return ValidateService;
 }());
 
 

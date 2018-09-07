@@ -1,7 +1,3 @@
-
-html{
-  background-color:  #779ECB;
-}
 body {
   margin: 0;
   padding: 0;
@@ -10,7 +6,7 @@ body {
 }
 #dash .container  {
   margin-top: 30px;
-  max-width: 600px;
+
   height: 500px;
   box-shadow: 0px 0px 20px grey;
   background-color: #EAEAEA;
@@ -25,6 +21,19 @@ body {
   background-color: #779ECB;
   border-color: #779ECB;
 }
+#dash .btn-succes {
+  background-color: #779ECB;
+  border-color: #779ECB;
+}
 #dash .text-info {
   color: #779ECB!important;
+}
+#cont {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color:  #EAEAEA;
+  box-shadow: 0px 0px 20px grey;
+}
+.alignRight{
+  text-align: right;
 }

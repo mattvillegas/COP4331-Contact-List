@@ -1,15 +1,71 @@
-<html style="background-color:#779ECB;" >
+<html style="background-color:#779ECB;"  >
 <body>
 
     <div id="dash">
       <div style="padding-top: 50px">
         <h1 class="text-center text-white display-1">Contact Manager</h1>
-        <h3 class="text-center text-white">A simple contact manager utilizing the MEAN stack</h3>
+        <h3 class="text-center text-white" style="margin-bottom: 30px;">A simple contact manager utilizing the MEAN stack</h3>
       </div>
-        <div class="container">
-            
-        </div>
     </div>
+
+        <div class="container" id="cont">
+          <div class="row" style=" padding-top: 10px; margin: 10px; ">
+            <h2>Welcome {{user.fname}}, add or search for a contact below.</h2>
+          </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <table class="table">
+              <tbody>
+                <tr><h3 class="text-center">Add a contact</h3></tr>
+                <tr><input placeholder="Enter Name" type="text" name="name" [(ngModel)] = "name" class="form-control" style="margin: 5px;"></tr>
+                <tr><input placeholder="Enter Phone #" type="text" name="phone" [(ngModel)] = "phone" class="form-control" style="margin: 5px;"></tr>
+                <tr><input placeholder="Enter Email" type="text" name="email" [(ngModel)] = "email" class="form-control" style="margin: 5px;"></tr>
+                <tr><input placeholder="Enter Address" type="text" name="address" [(ngModel)] = "address" class="form-control" style="margin: 5px;"></tr>
+                <tr><button class="btn btn-success" (click)="onAddButton()" style="background-color:#779ECB; border-color:#779ECB; margin-top:10px; margin-left: 5px;  ">Add</button></tr>
+                <td><button class="btn btn-success" (click)="clearFields()" style="background-color:red; border-color:#779ECB; margin-top:10px; margin-left: 5px;  ">clear</button></td>
+              </tbody>
+            </table>
+          </div>
+        <div class="col-md-9">
+          <h3>Contacts:</h3>
+          <table class="table table-hover">
+            <tbody>
+              <td>
+                <div class="form-group">
+                    <input placeholder="Enter Name" name="inputString" [(ngModel)] = "inputString" class="form-control">
+                </div>
+              </td>
+              <td><button class="btn btn-success" (click)="search_contact()" style="background-color:#779ECB; border-color:#779ECB;  ">Search</button></td>
+            </tbody>
+          </table>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th><h6><strong>Name</strong></h6></th>
+                <th><h6><strong>Phone</strong></h6></th>
+                <th><h6><strong>Email</strong></h6></th>
+                <th><h6><strong>Address</strong></h6></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                 <tr *ngFor="let contact of contactlist | filter : inputString;">
+                  <td>{{contact.name}}</td>
+                  <td>{{contact.phone}}</td>
+                  <td>{{contact.email}}</td>
+                  <td>{{contact.address}}</td>
+                  <td>
+                      <button class="close" aria-label="Close"(click)="onDeleteButton(contact)"><span aria-hidden="true">&times;</span></button>&nbsp;
+					            <button class="btn btn-info" (click)="onMapsButton(contact.address)" style="background-color:#779ECB; border-color:#779ECB;">Open in Google Maps</button>
+                      <button class="btn btn-info" (click)="onEditButton(contact)" style="background-color:#779ECB; border-color:#779ECB;  ">Edit</button>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
 </body>
 
 

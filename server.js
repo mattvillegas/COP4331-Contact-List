@@ -206,11 +206,15 @@ app.post("/api/contacts/search/:id", function(req, res){
 });
 
 app.post("/api/contacts/update/:id", function(req, res){
-	Contact.findOneAndUpdate(req.params.id, req.body, {new: true}, function(err, model) {
+	console.log(req.body);
+	Contact.findOneAndUpdate({ "_id": req.params.id }, req.body, {new: true}, function(err, model) {
 		if(err) {
+			//console.log(model)
 			handleError(res, "Error updating", "Error updating contact");
 		}
 		else {
+			console.log(req.params.id)
+			console.log(model)
 			res.status(201).json(model);
 		}
 	})
@@ -232,5 +236,21 @@ app.get("/api/contacts",function(req, res) {
       res.status(201).json(allContacts);
     }
 
+  })
+});
+
+app.post("/api/contacts/delete/:id",   function(req, res) {
+  Contact.findOneAndDelete({_id: req.params.id}, function(err, deletedContact){
+    if(err)
+    {
+      handleError(res, "Database error while deleting", "Failed to delete contact");
+    } else {
+      if(!deletedContact)
+      {
+        res.json({"error": "Failed to delete contact"});
+      } else {
+        res.json("Success!");
+      }
+    }
   })
 });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Route } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ValidateService } from '../services/validate.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   email: String;
   password: String;
 
-  constructor(private router: Router, public authService: AuthService) { }
+  constructor(private router: Router, public authService: AuthService, public validateService: ValidateService) { }
 
   ngOnInit() {
   }
@@ -32,6 +33,11 @@ export class HomeComponent implements OnInit {
        email : this.email,
        password : this.password
       };
+
+    if(!this.validateService.validateLogin(user)){
+        alert('Please fill in all fields!');
+        return false;
+      }
 
     this.authService.loginUser(user).subscribe( data => {
       if (data == 'Failed') {
