@@ -45,6 +45,7 @@ export class AuthService {
   }
 
   deleteContact(contact: Contact){
+	  console.log("logging from frontend")
     return this.http.post('/api/contacts/delete/'+contact._id, {headers:this.headers});
   }
 }

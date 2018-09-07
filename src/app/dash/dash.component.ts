@@ -172,7 +172,7 @@ pageLoad(){
 
   onVcfButton(contact){
 
-	  alert(contact)
+	  alert(contact.name)
   }
 
 }
