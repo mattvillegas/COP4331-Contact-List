@@ -5558,7 +5558,7 @@ module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #779E
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html style=\"background-color:#779ECB;\"  >\n<body>\n\n    <div id=\"dash\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\" style=\"margin-bottom: 30px;\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n    </div>\n\n        <div class=\"container\" id=\"cont\">\n          <div class=\"row\" style=\" padding-top: 10px; margin: 10px; \">\n            <h2>Welcome {{user.fname}}, add or search for a contact below.</h2>\n          </div>\n\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <table class=\"table\">\n              <tbody>\n                <tr><h3 class=\"text-center\" id=\"addtitle\">{{addTitle}}</h3></tr>\n                <tr><input placeholder=\"Enter Name\" type=\"text\" name=\"name\" [(ngModel)] = \"name\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Phone #\" type=\"text\" name=\"phone\" [(ngModel)] = \"phone\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Email\" type=\"text\" name=\"email\" [(ngModel)] = \"email\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Address\" type=\"text\" name=\"address\" [(ngModel)] = \"address\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><button class=\"btn btn-success\" (click)=\"onAddButton()\" style=\"background-color:#779ECB; border-color:#779ECB; margin-top:10px; margin-left: 5px;  \">Submit</button><button class=\"btn btn-success\" (click)=\"clearFields()\" style=\"background-color:grey; border-color:#779ECB; margin-top:10px; margin-left: 5px;  \">Clear</button></tr>\n\n              </tbody>\n            </table>\n          </div>\n        <div class=\"col-md-9\">\n          <h3>Contacts:</h3>\n          <table class=\"table table-hover\">\n            <tbody>\n              <td>\n                <div class=\"form-group\">\n                    <input placeholder=\"Enter Name\" name=\"inputString\" [(ngModel)] = \"inputString\" class=\"form-control\">\n                </div>\n              </td>\n              <td><button class=\"btn btn-success\" (click)=\"search_contact()\" style=\"background-color:#779ECB; border-color:#779ECB;  \">Search</button></td>\n            </tbody>\n          </table>\n          <table class=\"table table-hover\">\n            <thead>\n              <tr>\n                <th><h6><strong>Name</strong></h6></th>\n                <th><h6><strong>Phone</strong></h6></th>\n                <th><h6><strong>Email</strong></h6></th>\n                <th><h6><strong>Address</strong></h6></th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                 <tr *ngFor=\"let contact of contactlist | filter : inputString;\">\n                  <td>{{contact.name}}</td>\n                  <td>{{contact.phone}}</td>\n                  <td>{{contact.email}}</td>\n                  <td><a (click)=\"onMapsButton(contact.address)\" style=\"color: blue;\">{{contact.address}}</a></td>\n                  <td>\n                      <button class=\"close\" aria-label=\"Close\"(click)=\"onDeleteButton(contact)\"><span aria-hidden=\"true\">&times;</span></button>&nbsp;\n                  </td>\n\t\t\t\t\t           <!-- <button class=\"btn btn-info\" (click)=\"onMapsButton(contact.address)\" style=\"background-color:#779ECB; border-color:#779ECB;\">Open in Google Maps</button> -->\n                     <td>\n                      <button class=\"btn btn-info\" (click)=\"onEditButton(contact)\" style=\"background-color:#779ECB; border-color:#779ECB;  \">Edit</button>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n      </div>\n</body>\n\n\n</html>\n"
+module.exports = "<html style=\"background-color:#779ECB;\"  >\n<body>\n\n    <div id=\"dash\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\" style=\"margin-bottom: 30px;\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n    </div>\n\n        <div class=\"container\" id=\"cont\">\n          <div class=\"row\" style=\" padding-top: 10px; margin: 10px; \">\n            <h2>Welcome {{user.fname}}, add or search for a contact below.</h2>\n          </div>\n\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <table class=\"table\">\n              <tbody>\n                <tr><h3 class=\"text-center\" id=\"addtitle\">{{addTitle}}</h3></tr>\n                <tr><input placeholder=\"Enter Name\" type=\"text\" name=\"name\" [(ngModel)] = \"name\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Phone #\" type=\"text\" name=\"phone\" [(ngModel)] = \"phone\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Email\" type=\"text\" name=\"email\" [(ngModel)] = \"email\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Address\" type=\"text\" name=\"address\" [(ngModel)] = \"address\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><button class=\"btn btn-success\" (click)=\"onAddButton()\" style=\"background-color:#779ECB; border-color:#779ECB; margin-top:10px; margin-left: 5px;  \">Submit</button><button class=\"btn btn-success\" (click)=\"clearFields()\" style=\"background-color:grey; border-color:#779ECB; margin-top:10px; margin-left: 5px;  \">Clear</button></tr>\n\n              </tbody>\n            </table>\n          </div>\n        <div class=\"col-md-9\">\n          <h3>Contacts:</h3>\n          <table class=\"table table-hover\">\n            <tbody>\n              <td>\n                <div class=\"form-group\">\n                    <input placeholder=\"Enter Name\" name=\"inputString\" [(ngModel)] = \"inputString\" class=\"form-control\">\n                </div>\n              </td>\n              <td><button class=\"btn btn-success\" (click)=\"search_contact()\" style=\"background-color:#779ECB; border-color:#779ECB;  \">Search</button></td>\n            </tbody>\n          </table>\n          <table class=\"table table-hover\">\n            <thead>\n              <tr>\n                <th><h6><strong>Name</strong></h6></th>\n                <th><h6><strong>Phone</strong></h6></th>\n                <th><h6><strong>Email</strong></h6></th>\n                <th><h6><strong>Address</strong></h6></th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                 <tr *ngFor=\"let contact of contactlist | filter : inputString;\">\n                  <td><a (click)=\"onVcfButton(contact)\" style=\"color: blue\">{{contact.name}}</a></td>\n                  <td>{{contact.phone}}</td>\n                  <td>{{contact.email}}</td>\n                  <td><a (click)=\"onMapsButton(contact.address)\" style=\"color: blue;\">{{contact.address}}</a></td>\n                  <td><button class=\"btn btn-info\" (click)=\"onEditButton(contact)\" style=\"background-color:#779ECB; border-color:#779ECB;  \">Edit</button></td>\n\t\t\t\t\t            <!-- <button class=\"btn btn-info\" (click)=\"onMapsButton(contact.address)\" style=\"background-color:#779ECB; border-color:#779ECB;\">Open in Google Maps</button> -->\n                      <!-- <button class=\"btn btn-info\" (click)=\"onVcfButton(contact)\" style=\"background-color:#779ECB; border-color:#779ECB;\">Download Contact</button></td> -->\n\t\t\t\t\t           <!-- <button class=\"btn btn-info\" (click)=\"onMapsButton(contact.address)\" style=\"background-color:#779ECB; border-color:#779ECB;\">Open in Google Maps</button> -->\n                  <td><button class=\"close\" aria-label=\"Close\"(click)=\"onDeleteButton(contact)\"><span aria-hidden=\"true\">&times;</span></button></td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n      </div>\n</body>\n\n\n</html>\n"
 
 /***/ }),
 
@@ -5642,11 +5642,13 @@ var DashComponent = /** @class */ (function () {
             alert('Failed to add a contact!');
         });
         this.getContactList();
+        this.getContactList();
     };
     DashComponent.prototype.EditContact = function (OldContact) {
         var _this = this;
         this.authService.updateContact(OldContact).subscribe(function (data) {
             _this.clearFields();
+            _this.getContactList();
             _this.getContactList();
         }, function (err) {
             alert('Failed to update a contact!');
@@ -5671,7 +5673,8 @@ var DashComponent = /** @class */ (function () {
         var _this = this;
         this.authService.deleteContact(contact).subscribe(function (data) {
             _this.contactlist.splice(_this.contactlist.indexOf(contact), 1);
-            _this.authService.getContacts();
+            _this.getContactList();
+            _this.getContactList();
             // alert('Deleted a contact');
         }, function (err) {
             alert('Failed to delete a contact!');
@@ -5687,12 +5690,14 @@ var DashComponent = /** @class */ (function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (pos) {
                 var crd = pos.coords;
-                address = address.replace(" ", "+");
+                //address = address.replace(" ", "+");
                 var baseURL = 'https://www.google.com/maps/dir/?api=1&origin=';
                 var userLoc = crd.latitude + ',' + crd.longitude;
-                var destURL = '&destination=' + address + '&travelmode=driving';
+                var contactAddress = encodeURIComponent(address);
+                var destURL = '&destination=' + contactAddress + '&travelmode=driving';
                 var finalUrl = baseURL + userLoc + destURL;
                 //var finalUrl = encodeURIComponent(baseURL + userLoc + destURL);
+                alert(finalUrl);
                 window.open(finalUrl, "_blank");
             }, this.error);
         }
@@ -5711,6 +5716,9 @@ var DashComponent = /** @class */ (function () {
     DashComponent.prototype.error = function (err) {
         alert("ERROR");
         console.warn("ERROR(" + err.code + "): " + err.message);
+    };
+    DashComponent.prototype.onVcfButton = function (contact) {
+        alert(contact);
     };
     DashComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

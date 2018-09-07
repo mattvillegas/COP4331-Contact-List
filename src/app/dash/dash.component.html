@@ -51,17 +51,15 @@
             <tbody>
               <tr>
                  <tr *ngFor="let contact of contactlist | filter : inputString;">
-                  <td>{{contact.name}}</td>
+                  <td><a (click)="onVcfButton(contact)" style="color: blue">{{contact.name}}</a></td>
                   <td>{{contact.phone}}</td>
                   <td>{{contact.email}}</td>
                   <td><a (click)="onMapsButton(contact.address)" style="color: blue;">{{contact.address}}</a></td>
-                  <td>
-                      <button class="close" aria-label="Close"(click)="onDeleteButton(contact)"><span aria-hidden="true">&times;</span></button>&nbsp;
-                  </td>
+                  <td><button class="btn btn-info" (click)="onEditButton(contact)" style="background-color:#779ECB; border-color:#779ECB;  ">Edit</button></td>
+					            <!-- <button class="btn btn-info" (click)="onMapsButton(contact.address)" style="background-color:#779ECB; border-color:#779ECB;">Open in Google Maps</button> -->
+                      <!-- <button class="btn btn-info" (click)="onVcfButton(contact)" style="background-color:#779ECB; border-color:#779ECB;">Download Contact</button></td> -->
 					           <!-- <button class="btn btn-info" (click)="onMapsButton(contact.address)" style="background-color:#779ECB; border-color:#779ECB;">Open in Google Maps</button> -->
-                     <td>
-                      <button class="btn btn-info" (click)="onEditButton(contact)" style="background-color:#779ECB; border-color:#779ECB;  ">Edit</button>
-                </td>
+                  <td><button class="close" aria-label="Close"(click)="onDeleteButton(contact)"><span aria-hidden="true">&times;</span></button></td>
               </tr>
             </tbody>
           </table>

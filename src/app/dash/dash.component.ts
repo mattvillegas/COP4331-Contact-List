@@ -79,6 +79,7 @@ pageLoad(){
       alert('Failed to add a contact!');
     });
     this.getContactList();
+    this.getContactList();
 
   }
 
@@ -86,6 +87,7 @@ pageLoad(){
     this.authService.updateContact(OldContact).subscribe(data=>{
       this.clearFields();
 	  this.getContactList();
+    this.getContactList();
     }, err=>{
       alert('Failed to update a contact!');
     });
@@ -110,7 +112,8 @@ pageLoad(){
   onDeleteButton(contact){
     this.authService.deleteContact(contact).subscribe(data=>{
     this.contactlist.splice(this.contactlist.indexOf(contact),1)
-    this.authService.getContacts();
+    this.getContactList();
+    this.getContactList();
       // alert('Deleted a contact');
     }, err =>{
       alert('Failed to delete a contact!');
@@ -128,12 +131,14 @@ pageLoad(){
 	  if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(pos) {
 			var crd = pos.coords;
-			address = address.replace(" ", "+");
+			//address = address.replace(" ", "+");
 			var baseURL = 'https://www.google.com/maps/dir/?api=1&origin=';
 			var userLoc = crd.latitude + ',' + crd.longitude;
-			var destURL = '&destination=' + address + '&travelmode=driving';
+			var contactAddress = encodeURIComponent(address)
+			var destURL = '&destination=' + contactAddress + '&travelmode=driving';
 			var finalUrl = baseURL + userLoc + destURL;
 			//var finalUrl = encodeURIComponent(baseURL + userLoc + destURL);
+			alert(finalUrl)
 			window.open(finalUrl, "_blank");
 
 
@@ -155,9 +160,14 @@ pageLoad(){
 	  //alert(address);
   }
 
-
   error(err) {
 	 alert("ERROR");
     console.warn(`ERROR(${err.code}): ${err.message}`);
-}
+  }
+
+  onVcfButton(contact){
+
+	  alert(contact)
+  }
+
 }
