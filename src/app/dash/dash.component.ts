@@ -76,10 +76,10 @@ export class DashComponent implements OnInit {
   EditContact(OldContact){
     this.authService.updateContact(OldContact).subscribe(data=>{
       this.clearFields();
+	  this.getContactList();
     }, err=>{
       alert('Failed to update a contact!'+err);
     });
-    this.getContactList();
   }
 
   onEditButton(currentContact){
