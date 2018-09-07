@@ -10,9 +10,9 @@ Justin Zabel:     Database Development
 Joshua Lecas:     Angular Development   
 Sebastian Krupa:  HTML/CSS Development  
 Shelby Basco:     UML/ERD Documentation  
-John Hacker:      Front End Development  
-Daniil Klishin:   Front End Development  
-Eduardo Guevara:  Caught the flu lol  
+John Hacker:      UML/ERD Documentation  
+Daniil Klishin:   HTML/CSS Development  
+Eduardo Guevara:  Unit Testing 
 
 ## Front End Development Installation 
 ### (limited to HTML/CSS/Angular.js development, database functionality halted)
