@@ -5660,12 +5660,33 @@ var DashComponent = /** @class */ (function () {
         }
     };
     DashComponent.prototype.onMapsButton = function (address) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (pos) {
+                var crd = pos.coords;
+                address = address.replace(" ", "+");
+                var baseURL = 'https://www.google.com/maps/dir/?api=1&origin=';
+                var userLoc = crd.latitude + ',' + crd.longitude;
+                var destURL = '&destination=' + address + '&travelmode=driving';
+                var finalUrl = baseURL + userLoc + destURL;
+                //var finalUrl = encodeURIComponent(baseURL + userLoc + destURL);
+                window.open(finalUrl, "_blank");
+            }, this.error);
+        }
+        else {
+            //x.innerHTML = "Geolocation is not supported by this browser.";
+            alert("Geolocation not supported by this browser.");
+        }
+        //window.open('https://www.google.com','_blank');
         //String baseURL = 'https://www.google.com/maps/dir/?api=1&origin=';
         //String userLoc = '';
         //String destURL = '&destination=' + address + '&travelmode=driving';
         // do stuff
         //String finalURL = baseURL + userLoc + destURL;
-        alert(address);
+        //alert(address);
+    };
+    DashComponent.prototype.error = function (err) {
+        alert("ERROR");
+        console.warn("ERROR(" + err.code + "): " + err.message);
     };
     DashComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
