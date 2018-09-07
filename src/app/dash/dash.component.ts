@@ -157,9 +157,14 @@ pageLoad(){
 	  //alert(address);
   }
 
-
   error(err) {
 	 alert("ERROR");
     console.warn(`ERROR(${err.code}): ${err.message}`);
-}
+  }
+  
+  onVcfButton(contact){
+	  
+	  alert(contact)
+  }
+
 }
