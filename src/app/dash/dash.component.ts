@@ -135,7 +135,7 @@ pageLoad(){
 			var destURL = '&destination=' + contactAddress + '&travelmode=driving';
 			var finalUrl = baseURL + userLoc + destURL;
 			//var finalUrl = encodeURIComponent(baseURL + userLoc + destURL);
-			alert(finalUrl)
+			//alert(finalUrl)
 			window.open(finalUrl, "_blank");
 
 

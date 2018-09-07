@@ -31,7 +31,8 @@ export class AuthService {
 
   // Endpoints for interacting with Contacts
   getContacts(){
-  return this.http.get('/api/contacts/'+this.user.id, {headers:this.headers});
+	  //alert(this.user.id)
+    return this.http.get('/api/contacts/'+this.user.id, {headers:this.headers});
 }
 
   addContact(contact: Contact){

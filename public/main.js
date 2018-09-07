@@ -5694,7 +5694,7 @@ var DashComponent = /** @class */ (function () {
                 var destURL = '&destination=' + contactAddress + '&travelmode=driving';
                 var finalUrl = baseURL + userLoc + destURL;
                 //var finalUrl = encodeURIComponent(baseURL + userLoc + destURL);
-                alert(finalUrl);
+                //alert(finalUrl)
                 window.open(finalUrl, "_blank");
             }, this.error);
         }
@@ -5988,6 +5988,7 @@ var AuthService = /** @class */ (function () {
     };
     // Endpoints for interacting with Contacts
     AuthService.prototype.getContacts = function () {
+        alert(this.user.id);
         return this.http.get('/api/contacts/' + this.user.id, { headers: this.headers });
     };
     AuthService.prototype.addContact = function (contact) {
