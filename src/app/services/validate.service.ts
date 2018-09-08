@@ -12,6 +12,13 @@ export class ValidateService {
       return true;
     }
   }
+  validateAdd(contact){
+    if(contact.name == undefined || contact.email == undefined || contact.phone == undefined || contact.address == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
 
   validateLogin(user){
     if(user.email == undefined || user.password == undefined){

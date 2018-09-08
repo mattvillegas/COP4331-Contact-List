@@ -4,8 +4,7 @@ body {
   background-color: #779ECB;
   height: 100vh;
 }
-
-table tr{
+#contacts{
   word-break: break-all;
 }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Route } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Contact } from '../services/contact';
+import { ValidateService } from '../services/validate.service';
 
 @Component({
   selector: 'app-dash',
@@ -28,18 +29,19 @@ export class DashComponent implements OnInit {
   addTitle:string = "Add a Contact";
 
 
-  constructor(private router: Router, public authService:AuthService) { }
+  constructor(private router: Router, public authService:AuthService, public validateService: ValidateService) { }
 
   ngOnInit() {
+      if (sessionStorage.length == 0){
+        this.router.navigate(['/home']);
+      }
       this.pageLoad();
     }
 
 pageLoad(){
-  if (sessionStorage.length == 0){
-  this.router.navigate(['/home']);
-}
   var temp = sessionStorage.getItem('user');
   this.user = JSON.parse(temp);
+  this.authService.storeUser(this.user);
   this.user_id = this.user['id'];
   this.getContactList();
 }
@@ -55,6 +57,7 @@ pageLoad(){
 
   onAddButton(){
       this.addTitle = "Add a Contact";
+
       const new_contact = {
         _id: this._id,
         name: this.name,
@@ -62,6 +65,15 @@ pageLoad(){
         email: this.email,
         address: this.address,
         CreatedByUserID: this.user["id"]
+      }
+      if(!this.validateService.validateAdd(new_contact)){
+        alert('Please fill in all fields');
+        return false;
+      }
+
+      if(!this.validateService.validateEmail(new_contact.email)){
+        alert('Please use a valid email');
+        return false;
       }
       if(new_contact._id == null){
         this.AddContact(new_contact);
@@ -71,7 +83,7 @@ pageLoad(){
         }
       }
   }
-  
+
   onLogOutButton(){
     sessionStorage.clear();
     this.router.navigate(['/home']);
@@ -90,7 +102,7 @@ pageLoad(){
 
   EditContact(OldContact){
     this.authService.updateContact(OldContact).subscribe(data=>{
-      this.clearFields();
+    this.clearFields();
 	  this.getContactList();
     this.getContactList();
     }, err=>{
@@ -124,7 +136,7 @@ pageLoad(){
       alert('Failed to delete a contact!');
     });
   }
-  
+
   onVcfButton(contact){
 	  this.authService.downloadContact(contact).subscribe(data=>{
 		  alert('Contact successfully downloaded!')
