@@ -124,6 +124,15 @@ pageLoad(){
       alert('Failed to delete a contact!');
     });
   }
+  
+  onVcfButton(contact){
+	  this.authService.downloadContact(contact).subscribe(data=>{
+		  alert('Contact successfully downloaded!')
+	  }, err =>{
+		  alert('Failed to download contact')
+		  console.log(err)
+	  });
+  }
 
   search_contact(){
     if(this.inputString == undefined){
@@ -169,10 +178,4 @@ pageLoad(){
 	 alert("ERROR");
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
-
-  onVcfButton(contact){
-
-	  alert(contact.name)
-  }
-
 }
