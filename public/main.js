@@ -5547,7 +5547,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#dash .container  {\n  margin-top: 30px;\n\n  height: 500px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#dash .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#dash .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n#dash .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#dash .btn-succes {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#dash .text-info {\n  color: #779ECB!important;\n}\n#cont {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  background-color:  #EAEAEA;\n  box-shadow: 0px 0px 20px grey;\n}\n.alignRight{\n  text-align: right;\n}\n"
+module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #779ECB;\n  height: 100vh;\n}\n#contacts{\n  word-break: break-all;\n}\n#dash .container  {\n  margin-top: 30px;\n\n  height: 500px;\n  box-shadow: 0px 0px 20px grey;\n  background-color: #EAEAEA;\n}\n#dash .container #login-row #login-column #login-box #login-form {\n  padding: 20px;\n}\n#dash .container #login-row #login-column #login-box #login-form #register-link {\n  margin-top: -85px;\n}\n#dash .btn-info {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#dash .btn-succes {\n  background-color: #779ECB;\n  border-color: #779ECB;\n}\n#dash .text-info {\n  color: #779ECB!important;\n}\n#cont {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  background-color:  #EAEAEA;\n  box-shadow: 0px 0px 20px grey;\n}\n.alignRight{\n  text-align: right;\n}\n"
 
 /***/ }),
 
@@ -5558,7 +5558,7 @@ module.exports = "body {\n  margin: 0;\n  padding: 0;\n  background-color: #779E
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<html style=\"background-color:#779ECB;\"  >\n<body>\n\n    <div id=\"dash\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-1\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\" style=\"margin-bottom: 30px;\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n    </div>\n\n        <div class=\"container\" id=\"cont\">\n          <div class=\"row\" style=\" padding-top: 10px; margin: 10px; \">\n            <h2>Welcome {{user.fname}}, add or search for a contact below.</h2>\n          </div>\n\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <table class=\"table\">\n              <tbody>\n                <tr><h3 class=\"text-center\" id=\"addtitle\">{{addTitle}}</h3></tr>\n                <tr><input placeholder=\"Enter Name\" type=\"text\" name=\"name\" [(ngModel)] = \"name\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Phone #\" type=\"text\" name=\"phone\" [(ngModel)] = \"phone\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Email\" type=\"text\" name=\"email\" [(ngModel)] = \"email\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Address\" type=\"text\" name=\"address\" [(ngModel)] = \"address\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><button class=\"btn btn-success\" (click)=\"onAddButton()\" style=\"background-color:#779ECB; border-color:#779ECB; margin-top:10px; margin-left: 5px;  \">Submit</button><button class=\"btn btn-success\" (click)=\"clearFields()\" style=\"background-color:grey; border-color:#779ECB; margin-top:10px; margin-left: 5px;  \">Clear</button></tr>\n\n              </tbody>\n            </table>\n          </div>\n        <div class=\"col-md-9\">\n          <h3>Contacts:</h3>\n          <table class=\"table table-hover\">\n            <tbody>\n              <td>\n                <div class=\"form-group\">\n                    <input placeholder=\"Enter Name\" name=\"inputString\" [(ngModel)] = \"inputString\" class=\"form-control\">\n                </div>\n              </td>\n              <td><button class=\"btn btn-success\" (click)=\"search_contact()\" style=\"background-color:#779ECB; border-color:#779ECB;  \">Search</button></td>\n            </tbody>\n          </table>\n          <table class=\"table table-hover\">\n            <thead>\n              <tr>\n                <th><h6><strong>Name</strong></h6></th>\n                <th><h6><strong>Phone</strong></h6></th>\n                <th><h6><strong>Email</strong></h6></th>\n                <th><h6><strong>Address</strong></h6></th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                 <tr *ngFor=\"let contact of contactlist | filter : inputString;\">\n                  <td>{{contact.name}}</td>\n                  <td>{{contact.phone}}</td>\n                  <td>{{contact.email}}</td>\n                  <td>{{contact.address}}</td>\n                  <td>\n                      <button class=\"close\" aria-label=\"Close\"(click)=\"onDeleteButton(contact)\"><span aria-hidden=\"true\">&times;</span></button>&nbsp;\n\t\t\t\t\t            <button class=\"btn btn-info\" (click)=\"onMapsButton(contact.address)\" style=\"background-color:#779ECB; border-color:#779ECB;\">Open in Google Maps</button>\n                      <button class=\"btn btn-info\" (click)=\"onEditButton(contact)\" style=\"background-color:#779ECB; border-color:#779ECB;  \">Edit</button>\n                  </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n      </div>\n</body>\n\n\n</html>\n"
+module.exports = "<html style=\"background-color:#779ECB;\"  >\n<body>\n\n    <div id=\"dash\">\n      <div style=\"padding-top: 50px\">\n        <h1 class=\"text-center text-white display-3\">Contact Manager</h1>\n        <h3 class=\"text-center text-white\" style=\"margin-bottom: 30px;\">A simple contact manager utilizing the MEAN stack</h3>\n      </div>\n    </div>\n\n        <div class=\"container\" id=\"cont\">\n          <div class=\"row\" style=\" padding-top: 10px; padding-bottom: 15px;margin: 5px;\">\n            <div class=\"col-md-10\"><h2 style=\"color:#779ECB;\">Welcome {{user.fname}}, add or search for a contact below.</h2></div>\n            <div class=\"col-md-2\"><button class=\"btn btn-success\" (click)=\"onLogOutButton()\" style=\"background-color:#779ECB; border-color:#779ECB;margin-left: 25%;\">Log Out</button></div>\n          </div>\n        <div class=\"row\">\n          <div class=\"col-md-3\">\n            <table class=\"table\">\n              <tbody>\n                <tr><h3 class=\"text-center\" id=\"addtitle\" style=\"color:#779ECB;\">{{addTitle}}</h3></tr>\n                <tr><input placeholder=\"Enter Name\" type=\"text\" name=\"name\" [(ngModel)] = \"name\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Phone #\" type=\"text\" name=\"phone\" [(ngModel)] = \"phone\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Email\" type=\"text\" name=\"email\" [(ngModel)] = \"email\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><input placeholder=\"Enter Address\" type=\"text\" name=\"address\" [(ngModel)] = \"address\" class=\"form-control\" style=\"margin: 5px;\"></tr>\n                <tr><button class=\"btn btn-success\" (click)=\"onAddButton()\" style=\"background-color:#779ECB; border-color:#779ECB; margin-top:10px; margin-left: 5px;  \">Submit</button><button class=\"btn btn-success\" (click)=\"clearFields()\" style=\"background-color:#c23b22; border-color:#c23b22; margin-top:10px; margin-left: 5px;  \">Clear</button></tr>\n              </tbody>\n            </table>\n          </div>\n        <div class=\"col-md-9\">\n          <h3 class=\"text-left\" style=\"margin-left: 13px; color:#779ECB;\">Contacts</h3>\n          <div class=\"form-group\">\n              <input placeholder=\"Enter Name to Search\" name=\"inputString\" [(ngModel)] = \"inputString\" class=\"form-control\" style=\"max-width:250px; padding-bottom:10px;\">\n          </div>\n          <table class=\"table table-striped\" style=\"padding-top:0px;\">\n            <thead style=\"background-color: #bfbfbf; color: white;\">\n              <tr style=\"  box-shadow: 0px 0px 10px grey;\">\n                <th><h6><strong>Name</strong></h6></th>\n                <th><h6><strong>Phone</strong></h6></th>\n                <th><h6><strong>Email</strong></h6></th>\n                <th><h6><strong>Address</strong></h6></th>\n                <th><h6><strong>Options</strong></h6></th>\n\t\t\t\t        <th><h6><strong></strong></h6></th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr id=\"contacts\">\n                 <tr *ngFor=\"let contact of contactlist | filter : inputString;\">\n                  <td><a (click)=\"onVcfButton(contact)\" style=\"color: #779ECB;\">{{contact.name}}</a></td>\n                  <td>{{contact.phone}}</td>\n                  <td>{{contact.email}}</td>\n                  <td><a (click)=\"onMapsButton(contact.address)\" style=\"color: #779ECB;;\">{{contact.address}}</a></td>\n                  <td><button class=\"btn btn-info\" (click)=\"onEditButton(contact)\" style=\"background-color:#779ECB; border-color:#779ECB;  \">Edit</button></td>\n                  <td><button class=\"btn btn-info\" (click)=\"onDeleteButton(contact)\" style=\"background-color:#779ECB; border-color:#779ECB;  \">Delete</button></td>\n\n\t\t\t\t\t            <!-- <button class=\"btn btn-info\" (click)=\"onMapsButton(contact.address)\" style=\"background-color:#779ECB; border-color:#779ECB;\">Open in Google Maps</button> -->\n                      <!-- <button class=\"btn btn-info\" (click)=\"onVcfButton(contact)\" style=\"background-color:#779ECB; border-color:#779ECB;\">Download Contact</button></td> -->\n\t\t\t\t\t           <!-- <button class=\"btn btn-info\" (click)=\"onMapsButton(contact.address)\" style=\"background-color:#779ECB; border-color:#779ECB;\">Open in Google Maps</button> -->\n                  <!-- <td><button class=\"close\" aria-label=\"Close\"(click)=\"onDeleteButton(contact)\"><span aria-hidden=\"true\">&times;</span></button></td> -->\n\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n      </div>\n      <p style=\"padding-top:15px; color: #779ECB\">If you notice this then good for you.</p>\n</body>\n\n\n</html>\n"
 
 /***/ }),
 
@@ -5575,6 +5575,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/validate.service */ "./src/app/services/validate.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5587,22 +5588,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var DashComponent = /** @class */ (function () {
-    function DashComponent(router, authService) {
+    function DashComponent(router, authService, validateService) {
         this.router = router;
         this.authService = authService;
+        this.validateService = validateService;
         this._id = null;
         this.addTitle = "Add a Contact";
     }
     DashComponent.prototype.ngOnInit = function () {
-        this.pageLoad();
-    };
-    DashComponent.prototype.pageLoad = function () {
         if (sessionStorage.length == 0) {
             this.router.navigate(['/home']);
         }
+        this.pageLoad();
+    };
+    DashComponent.prototype.pageLoad = function () {
         var temp = sessionStorage.getItem('user');
         this.user = JSON.parse(temp);
+        this.authService.storeUser(this.user);
         this.user_id = this.user['id'];
         this.getContactList();
     };
@@ -5625,6 +5629,14 @@ var DashComponent = /** @class */ (function () {
             address: this.address,
             CreatedByUserID: this.user["id"]
         };
+        if (!this.validateService.validateAdd(new_contact)) {
+            alert('Please fill in all fields');
+            return false;
+        }
+        if (!this.validateService.validateEmail(new_contact.email)) {
+            alert('Please use a valid email');
+            return false;
+        }
         if (new_contact._id == null) {
             this.AddContact(new_contact);
         }
@@ -5634,6 +5646,10 @@ var DashComponent = /** @class */ (function () {
             }
         }
     };
+    DashComponent.prototype.onLogOutButton = function () {
+        sessionStorage.clear();
+        this.router.navigate(['/home']);
+    };
     DashComponent.prototype.AddContact = function (NewContact) {
         var _this = this;
         this.authService.addContact(NewContact).subscribe(function (data) {
@@ -5642,11 +5658,13 @@ var DashComponent = /** @class */ (function () {
             alert('Failed to add a contact!');
         });
         this.getContactList();
+        this.getContactList();
     };
     DashComponent.prototype.EditContact = function (OldContact) {
         var _this = this;
         this.authService.updateContact(OldContact).subscribe(function (data) {
             _this.clearFields();
+            _this.getContactList();
             _this.getContactList();
         }, function (err) {
             alert('Failed to update a contact!');
@@ -5671,10 +5689,19 @@ var DashComponent = /** @class */ (function () {
         var _this = this;
         this.authService.deleteContact(contact).subscribe(function (data) {
             _this.contactlist.splice(_this.contactlist.indexOf(contact), 1);
-            _this.authService.getContacts();
+            _this.getContactList();
+            _this.getContactList();
             // alert('Deleted a contact');
         }, function (err) {
             alert('Failed to delete a contact!');
+        });
+    };
+    DashComponent.prototype.onVcfButton = function (contact) {
+        this.authService.downloadContact(contact).subscribe(function (data) {
+            alert('Contact successfully downloaded!');
+        }, function (err) {
+            alert('Failed to download contact');
+            console.log(err);
         });
     };
     DashComponent.prototype.search_contact = function () {
@@ -5687,12 +5714,14 @@ var DashComponent = /** @class */ (function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (pos) {
                 var crd = pos.coords;
-                address = address.replace(" ", "+");
+                //address = address.replace(" ", "+");
                 var baseURL = 'https://www.google.com/maps/dir/?api=1&origin=';
                 var userLoc = crd.latitude + ',' + crd.longitude;
-                var destURL = '&destination=' + address + '&travelmode=driving';
+                var contactAddress = encodeURIComponent(address);
+                var destURL = '&destination=' + contactAddress + '&travelmode=driving';
                 var finalUrl = baseURL + userLoc + destURL;
                 //var finalUrl = encodeURIComponent(baseURL + userLoc + destURL);
+                //alert(finalUrl)
                 window.open(finalUrl, "_blank");
             }, this.error);
         }
@@ -5718,7 +5747,7 @@ var DashComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./dash.component.html */ "./src/app/dash/dash.component.html"),
             styles: [__webpack_require__(/*! ./dash.component.css */ "./src/app/dash/dash.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _services_validate_service__WEBPACK_IMPORTED_MODULE_3__["ValidateService"]])
     ], DashComponent);
     return DashComponent;
 }());
@@ -5989,11 +6018,13 @@ var AuthService = /** @class */ (function () {
         return this.http.post('/api/contacts/create/' + this.user.id, contact, { headers: this.headers });
     };
     AuthService.prototype.updateContact = function (contact) {
-        console.log(contact);
         return this.http.post('/api/contacts/update/' + contact._id, contact, { headers: this.headers });
     };
     AuthService.prototype.deleteContact = function (contact) {
         return this.http.post('/api/contacts/delete/' + contact._id, { headers: this.headers });
+    };
+    AuthService.prototype.downloadContact = function (contact) {
+        return this.http.post('/api/contacts/download/' + contact._id, contact, { headers: this.headers });
     };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -6077,6 +6108,14 @@ var ValidateService = /** @class */ (function () {
     }
     ValidateService.prototype.validateRegister = function (user) {
         if (user.fname == undefined || user.email == undefined || user.lname == undefined || user.password == undefined) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    ValidateService.prototype.validateAdd = function (contact) {
+        if (contact.name == undefined || contact.email == undefined || contact.phone == undefined || contact.address == undefined) {
             return false;
         }
         else {

@@ -8,6 +8,7 @@ var CONTACTS_COLLECTION = "contacts";
 var USERS_COLLECTION = "users";
 const path = require("path");
 var app = express();
+var vCard = require('vcards-js');
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -239,6 +240,7 @@ app.get("/api/contacts",function(req, res) {
   })
 });
 
+// User ID
 app.post("/api/contacts/delete/:id",   function(req, res) {
   Contact.findOneAndDelete({_id: req.params.id}, function(err, deletedContact){
     if(err)
@@ -253,4 +255,20 @@ app.post("/api/contacts/delete/:id",   function(req, res) {
       }
     }
   })
+});
+
+app.post("/api/contacts/download/:id", function(req, res){
+	console.log(req.body)
+	//alert(req.body)
+	
+	vCard = vCard()
+	
+	vCard.firstName = req.body.name
+	vCard.email = req.body.email
+	vCard.cellPhone = req.body.phone
+	vCard.homeAddress.street = req.body.address	
+	vCard.saveToFile('./' + req.body.name + '.vcf')
+	
+	res.status(201).json(vCard)
+	//res.download(vCard, req.body.name + '.vcf')
 });
