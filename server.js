@@ -9,6 +9,9 @@ var USERS_COLLECTION = "users";
 const path = require("path");
 var app = express();
 var vCard = require('vcards-js');
+//var fs = require('fs');
+//var Grid = require('gridfs-stream');
+//Grid.mongo = mongoose.mongo;
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -267,7 +270,9 @@ app.post("/api/contacts/download/:id", function(req, res){
 	vCard.email = req.body.email
 	vCard.cellPhone = req.body.phone
 	vCard.homeAddress.street = req.body.address	
-	vCard.saveToFile('./' + req.body.name + '.vcf')
+	vCard.saveToFile(req.body.name + '.vcf')
+	
+	//var gfs = Grid(db.db);
 	
 	res.status(201).json(vCard)
 	//res.download(vCard, req.body.name + '.vcf')
