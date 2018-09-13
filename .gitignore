@@ -41,5 +41,4 @@ Thumbs.db
 # ignore package-lock
 package-lock.json
 
-#ignore credentials
-dbcreds.js
+
